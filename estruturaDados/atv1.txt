@@ -1,0 +1,27 @@
+1 - No meu dia a dia, utilizo a linguagem SQL para gerenciar bancos de dados oracles, e Python para desenvolver ferrramentas que me ajudem na gestao desses bancos relacionais. Utilizo, em especifico o framework Django para desenvolver essas ferramentas.
+
+2 - Já estudei estrutura de dados, porém com python. Nunca utilizei C. 
+
+atividades:
+
+1 - Sei parcialmente.
+
+#include <stdio.h>
+
+int main()
+{
+    int vetorInteiro[50];
+    int i;
+
+    for(i = 0; i < 50; i++) {
+        vetorInteiro[i] = i;
+       printf("%d \n", vetorInteiro[i]);
+    }
+    
+    return 0;
+}
+
+2 - Não sei
+3 - Não sei
+4 A - Não sei
+4 B - Não sei
