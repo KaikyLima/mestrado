@@ -4,7 +4,6 @@ import time
 import re
 import unicodedata
 
-
 # =========================
 # TRADUZ TEXTO LONGO
 # =========================
@@ -45,23 +44,21 @@ def traduzir_texto_longo(texto, tradutor, limite=4500):
 
 
 # =========================
-# LIMPEZA DE TEXTO
+# LIMPEZA DE TEXTO (O DESTRUIDOR DE SETAS)
 # =========================
 def limpar_texto(text):
     texto = text.replace('\n', ' ')
     texto = texto.replace('\xa0', ' ').replace('\xad', '')
 
-    # mantém símbolos matemáticos
     texto = unicodedata.normalize("NFKC", texto)
-
-    # remove caracteres de controle
     texto = re.sub(r'[\x00-\x1F]+', '', texto)
-
-    # remove lixo tipo ????
     texto = re.sub(r'\?{2,}', '', texto)
 
-    # remove seta bugada específica
-    texto = texto.replace('↦', ' ')
+    texto = texto.replace('↦', ' ') 
+    
+    texto = re.sub(r'([a-zA-ZÀ-ÿ]{2,})\s*→\s*([a-zA-ZÀ-ÿ]{2,})', r'\1 \2', texto)
+    texto = re.sub(r'([a-zà-ÿ])\s*→\s*([a-zA-ZÀ-ÿ])', r'\1 \2', texto)
+    texto = re.sub(r'([a-zA-ZÀ-ÿ])\s*→\s*([a-zà-ÿ])', r'\1 \2', texto)
 
     texto = re.sub(r'\s+', ' ', texto).strip()
 
@@ -72,8 +69,7 @@ def limpar_texto(text):
 # PROTEGER MATEMÁTICA
 # =========================
 def proteger_matematica(texto):
-    padrao = r'([A-Za-z0-9_\[\]\(\)]+(?:\s*[⊆⊂⊇⊃∈∉=≠→←↔\\∪∩]\s*[A-Za-z0-9_\[\]\(\)]+)+)'
-    
+    padrao = r'([A-Za-z0-9_\[\]\(\)]+(?:\s*[⊆⊂⊇⊃∈∉=≠→←↔\\∪∩≤≥×÷±∓≈≡∝∼]\s*[A-Za-z0-9_\[\]\(\)]+)+)'
     encontrados = re.findall(padrao, texto)
     
     mapa = {}
@@ -86,11 +82,43 @@ def proteger_matematica(texto):
 
 
 # =========================
-# RESTAURAR MATEMÁTICA
+# RESTAURAR MATEMÁTICA (DESTAQUE COM UNDERSCORE)
 # =========================
 def restaurar_matematica(texto, mapa):
     for chave, valor in mapa.items():
         texto = texto.replace(chave, valor)
+        
+    # Símbolos complexos recebem ' _ ' para se destacarem no meio do texto normal
+    conversao_ascii = {
+        '⊆': ' _subconjunto_de_ ',
+        '⊂': ' _contido_em_ ',
+        '⊇': ' _contem_ ',
+        '⊃': ' _superconj_de_ ',
+        '∈': ' _pertence_a_ ',           
+        '∉': ' _nao_pertence_ ',
+        '≠': ' != ',
+        '→': ' -> ',
+        '←': ' <- ',
+        '↔': ' <-> ',
+        '∪': ' _uniao_ ',           
+        '∩': ' _intersec_ ',
+        '∅': ' _vazio_ ',
+        '≤': ' <= ',
+        '≥': ' >= ',
+        '×': ' * ',
+        '÷': ' / ',
+        '−': '-',             
+        '≈': ' _aprox_ ',
+        '≡': ' _equiv_ ',
+        'α': ' _alfa_ ', 'β': ' _beta_ ', 'γ': ' _gama_ ', 'δ': ' _delta_ ', 'Δ': ' _Delta_ ',
+        'ε': ' _epsilon_ ', 'ζ': ' _zeta_ ', 'η': ' _eta_ ', 'θ': ' _teta_ ', 'Θ': ' _Theta_ ',
+        'λ': ' _lambda_ ', 'Λ': ' _Lambda_ ', 'μ': ' _mi_ ', 'π': ' _pi_ ', 'Σ': ' _Sigma_ ',
+        'φ': ' _fi_ ', 'ω': ' _omega_ ', 'Ω': ' _Omega_ '
+    }
+
+    for simbolo, substituto in conversao_ascii.items():
+        texto = texto.replace(simbolo, substituto)
+
     return texto
 
 
@@ -104,13 +132,14 @@ def traduzir_artigo_academico(arquivo_entrada, arquivo_saida, idioma_origem='en'
     total_paginas = len(doc)
     print(f"Iniciando tradução de {total_paginas} páginas...")
 
-    for num_pagina, page in enumerate(doc):
+    for num_pagina in range(total_paginas):
+        page = doc[num_pagina]
         print(f"-> Página {num_pagina + 1}/{total_paginas}")
         blocks = page.get_text("blocks")
 
         for num_bloco, block in enumerate(blocks):
             if len(block) >= 7 and block[6] != 0:
-                continue
+                continue 
 
             text = block[4]
             bbox = block[:4]
@@ -119,59 +148,86 @@ def traduzir_artigo_academico(arquivo_entrada, arquivo_saida, idioma_origem='en'
 
                 texto_minusculo = text.lower()
 
-                # filtros básicos
                 if any(s in text for s in ['==', '!=', '++', '();', '};']):
                     continue
 
-                if re.search(r'^(input|output|data|result|require|ensure):',
-                             texto_minusculo, re.MULTILINE):
+                if re.search(r'^(input|output|data|result|require|ensure):', texto_minusculo, re.MULTILINE):
+                    continue
+                    
+                linhas = text.strip().split('\n')
+                if len(linhas) > 3 and (sum(len(l.strip()) for l in linhas) / len(linhas)) < 25:
                     continue
 
                 try:
-                    # LIMPA TEXTO
+                    # Captura indentação inicial
+                    espacos_iniciais = len(text) - len(text.lstrip(' \t'))
+                    prefixo = " " * espacos_iniciais
+
                     texto_limpo = limpar_texto(text)
-
-                    # 🔒 PROTEGE MATEMÁTICA
                     texto_protegido, mapa = proteger_matematica(texto_limpo)
-
-                    # 🌍 TRADUZ
                     traducao = traduzir_texto_longo(texto_protegido, translator)
 
                     if not traducao:
                         continue
 
-                    # 🔓 RESTAURA MATEMÁTICA
                     traducao = restaurar_matematica(traducao, mapa)
+                    traducao = prefixo + traducao
 
-                    # REMOVE TEXTO ORIGINAL
                     page.add_redact_annot(fitz.Rect(bbox))
                     page.apply_redactions(images=fitz.PDF_REDACT_IMAGE_NONE)
 
-                    # INSERE TRADUÇÃO
                     tamanho_fonte = 10
-                    caixa = fitz.Rect(bbox)
+                    caixa = fitz.Rect(bbox[0], bbox[1], bbox[2], bbox[3] + 5)
 
-                    while tamanho_fonte > 3:
-                        res = page.insert_textbox(
+                    inseriu_com_sucesso = -1
+                    while inseriu_com_sucesso < 0 and tamanho_fonte > 2:
+                        inseriu_com_sucesso = page.insert_textbox(
                             caixa,
                             traducao,
                             fontsize=tamanho_fonte,
-                            fontname="helv"
+                            fontname="helv", # Retornado para Normal (Helvetica)
+                            color=(0, 0, 0),
+                            align=3 # Retornado para Justificado (Alinhamento de artigo)
                         )
-                        if res >= 0:
-                            break
-                        tamanho_fonte -= 1
+                        if inseriu_com_sucesso < 0:
+                            tamanho_fonte -= 1
 
-                    time.sleep(0.2)
+                    if inseriu_com_sucesso < 0:
+                        caixa_expandida = fitz.Rect(bbox[0], bbox[1], bbox[2] + 10, bbox[3] + 25)
+                        page.insert_textbox(caixa_expandida, traducao, fontsize=4, fontname="helv", color=(0, 0, 0), align=3)
+
+                    time.sleep(0.3)
 
                 except Exception as e:
                     print(f"Erro no bloco {num_bloco}: {e}")
 
-    doc.save(arquivo_saida)
-    print(f"\n✅ Tradução concluída: {arquivo_saida}")
+    # ==========================================
+    # CRIAÇÃO DA PÁGINA INICIAL (CAPA)
+    # ==========================================
+    print("\n-> Gerando página inicial...")
+    capa = doc.new_page(pno=0) 
+    
+    texto_capa = (
+        "TRADUÇÃO ACADÊMICA AUTOMATIZADA\n\n\n"
+        "NOTA TÉCNICA SOBRE A TRADUÇÃO DE SÍMBOLOS MATEMÁTICOS:\n\n"
+        "Este documento foi traduzido automaticamente de seu idioma original. "
+        "Para preservar a integridade científica da pesquisa, todos os símbolos matemáticos "
+        "e notações de teoria dos conjuntos foram submetidos a um tratamento computacional especial.\n\n"
+        "Antes da tradução, esses caracteres foram isolados através de tokens para evitar que "
+        "fossem corrompidos. Após a tradução do texto base, os símbolos complexos foram convertidos "
+        "para equivalentes textuais e destacados visualmente com sublinhados (_) para fácil "
+        "identificação no meio do parágrafo (ex: o símbolo de pertinência foi transformado em '_pertence_a_').\n\n"
+        "Isso garante que as equações e lógicas de algoritmos ao longo do texto permaneçam "
+        "legíveis, respeitem o alinhamento das colunas e sejam precisas para o estudo acadêmico."
+    )
+    
+    retangulo_capa = fitz.Rect(50, 100, 545, 800)
+    capa.insert_textbox(retangulo_capa, texto_capa, fontsize=14, fontname="helv", color=(0.1, 0.1, 0.4), align=0)
 
+    doc.save(arquivo_saida)
+    print(f"\n✅ Tradução concluída com sucesso: {arquivo_saida}")
 
 # =========================
 # EXECUÇÃO
 # =========================
-traduzir_artigo_academico("3639298.pdf", "3639298-ptbr_v12.pdf")
+traduzir_artigo_academico("3639298.pdf", "3639298-ptbr_FINAL2.pdf")
