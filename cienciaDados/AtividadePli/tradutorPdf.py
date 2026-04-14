@@ -230,4 +230,4 @@ def traduzir_artigo_academico(arquivo_entrada, arquivo_saida, idioma_origem='en'
 # =========================
 # EXECUÇÃO
 # =========================
-traduzir_artigo_academico("3639298.pdf", "3639298-ptbr_FINAL2.pdf")
+traduzir_artigo_academico("papenbrock.pdf", "papenbrock-ptbr_FINAL2.pdf")
