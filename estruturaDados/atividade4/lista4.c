@@ -1,22 +1,6 @@
-#include <stdlib.h>
 #include <stdio.h>
-#ifndef LISTA3_H
-#define LISTA3_H
-
-typedef struct {
-    int x;
-    int y;
-} Ponto;
-
-typedef struct {
-    int   ra;
-    float nota;
-} Aluno;
-
-typedef struct  {
-    float raio;
-    Ponto centro;
-} Circulo;
+#include <stdlib.h>
+#include "lista4.h"
 
 Ponto* alocarPonto(int x, int y){
     Ponto *aponta;
@@ -28,7 +12,7 @@ Ponto* alocarPonto(int x, int y){
 }
 
 void imprimirPonto (Ponto* aponta){
-    printf("%d, %d", aponta->x, aponta->y);
+    printf("(%d, %d)\n", aponta->x, aponta->y);
 }
 
 Aluno* alocarTurma(int n){
@@ -72,16 +56,21 @@ Circulo* criarCirculo(float raio, int x, int y){
     return bola;
 }
 
-Aluno* clonaTurma(Aluno* turma){
-    Aluno *aloca;
-    aloca = (Aluno*) malloc(sizeof(Aluno)); 
-    aloca = turma;
-    
-    return aloca;
+float calcularArea(Circulo* c){
+    return 3.14 * c->raio * c->raio;
+}
+
+Aluno* clonaTurma(Aluno* turma, int n){
+    Aluno* copia = (Aluno*) malloc(n * sizeof(Aluno));
+
+    for(int i = 0; i < n; i++){
+        copia[i] = turma[i];
+    }
+
+    return copia;
 }
 
 void liberarMemoria(void** ponteiro){
     free(*ponteiro);
+    *ponteiro = NULL;
 }
-
-#endif
