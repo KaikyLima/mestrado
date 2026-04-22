@@ -3,9 +3,12 @@
 #ifndef LISTA_H
 #define LISTA_H
 
-#define MAX 100
+//atividade 1
+//#define MAX 12
 
-typedef int elemento;
+//Atividade 2
+#define MAX 8
+typedef float elemento;
 
 typedef struct {
     elemento itens[MAX];
@@ -29,5 +32,6 @@ int buscar(Lista *l, elemento e);
 int obter_elemento(Lista *l, int pos, elemento *e);
 
 void imprimir(Lista *l);
+int alterar_elemento(Lista *l, int pos, elemento e);
 
 #endif
