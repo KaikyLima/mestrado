@@ -24,7 +24,7 @@ void imprimir_pli(char nome, string coluna[], int tamanho) {
         }
     }
     if (!encontrou) {
-        cout << "Vazia (não há redundância)";
+        cout << "Sem duplicata";
     }
     cout << endl;
 }
