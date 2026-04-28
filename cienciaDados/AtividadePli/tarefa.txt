@@ -1,0 +1,2 @@
+utilizando PLI verifica se uma dependencia funcional se mantem ou não, e o custo computacional
+escrever um codigo para isso
