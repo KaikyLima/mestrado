@@ -31,9 +31,9 @@ void achar_imprimir_pli(char nome, string coluna[], int tamanho) {
 
 int main() {
     int tamanho = 5;
-    string colunaA[tamanho] = {"1", "2", "1", "4", "1"};
-    string colunaB[tamanho] = {"9", "8", "9", "6", "8"};
-    string colunaC[tamanho] = {"3", "3", "4", "3", "4"};
+    string colunaA[tamanho] = {"kaiky", "kaiky", "1", "4", "1"};
+    string colunaB[tamanho] = {"9", "8", "l", "l", "8"};
+    string colunaC[tamanho] = {"3", "322s", "4", "3", "322s"};
     string colunaD[tamanho] = {"0", "0", "1", "1", "0"};
 
     cout << "--- Construindo as PLIs ---\n\n";
