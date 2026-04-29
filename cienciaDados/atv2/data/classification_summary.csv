@@ -1,0 +1,3 @@
+key,best_model,accuracy,macro_f1,weighted_f1,error
+adult,random_forest,0.8527,0.7892,0.8476,
+bank_marketing,random_forest,0.8464,0.7575,0.8375,

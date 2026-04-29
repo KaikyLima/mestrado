@@ -1,0 +1,27 @@
+{
+  "key": "adult",
+  "task": "classification",
+  "target": "income",
+  "shape_original": [
+    48842,
+    15
+  ],
+  "shape_after_dropna": [
+    45222,
+    15
+  ],
+  "test_size": 0.2,
+  "random_state": 42,
+  "results": {
+    "logistic_regression": {
+      "accuracy": 0.8091763405196241,
+      "macro_f1": 0.7742666199497235,
+      "weighted_f1": 0.8190299698286431
+    },
+    "random_forest": {
+      "accuracy": 0.8527363184079602,
+      "macro_f1": 0.7892272326489482,
+      "weighted_f1": 0.8475686103220306
+    }
+  }
+}

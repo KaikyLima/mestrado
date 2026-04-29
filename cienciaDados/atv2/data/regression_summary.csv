@@ -1,0 +1,3 @@
+key,best_model,mae,rmse,r2,error
+air_quality_uci,random_forest,0.0694,0.2302,0.9991,
+communities_crime,random_forest,0.111,0.1458,0.7041,

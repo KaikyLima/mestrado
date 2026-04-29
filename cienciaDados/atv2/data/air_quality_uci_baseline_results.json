@@ -1,0 +1,27 @@
+{
+  "key": "air_quality_uci",
+  "task": "regression",
+  "target": "C6H6(GT)",
+  "shape_original": [
+    9357,
+    13
+  ],
+  "shape_after_dropna": [
+    827,
+    13
+  ],
+  "test_size": 0.2,
+  "random_state": 42,
+  "results": {
+    "ridge_regression": {
+      "mae": 0.4753311067686705,
+      "rmse": 0.6534892902893527,
+      "r2": 0.9928225739843576
+    },
+    "random_forest": {
+      "mae": 0.06943674698795214,
+      "rmse": 0.23015454799733295,
+      "r2": 0.9991097112245502
+    }
+  }
+}
