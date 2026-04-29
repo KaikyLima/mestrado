@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void imprimir_pli(char nome, string coluna[], int tamanho) {
+void achar_imprimir_pli(char nome, string coluna[], int tamanho) {
     unordered_map<string, vector<int>> grupos;
     for (int i = 0; i < tamanho; i++) {
         grupos[coluna[i]].push_back(i);
@@ -38,13 +38,13 @@ int main() {
 
     cout << "--- Construindo as PLIs ---\n\n";
 
-    imprimir_pli('A', colunaA, tamanho);
+    achar_imprimir_pli('A', colunaA, tamanho);
 
-    imprimir_pli('B', colunaB, tamanho);
+    achar_imprimir_pli('B', colunaB, tamanho);
 
-    imprimir_pli('C', colunaC, tamanho);
+    achar_imprimir_pli('C', colunaC, tamanho);
 
-    imprimir_pli('D', colunaD, tamanho);
+    achar_imprimir_pli('D', colunaD, tamanho);
 
     return 0;
 }
