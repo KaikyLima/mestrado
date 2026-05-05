@@ -16,7 +16,7 @@ vector<vector<int>> gerar_pli(const vector<string>& coluna) {
         grupos[coluna[i]].push_back(i); 
     }
 
-    for (auto& par : grupos) { // percorre o grupo O(1) -> pior caso O(n)
+    for (auto& par : grupos) { // percorre os grupos (O(k), onde k = número de valores distintos)
         if (par.second.size() > 1) { // mantém apenas valores que aparecem mais de uma vez (O(1))
             pli.push_back(par.second); // adiciona o grupo de índices ao PLI
         }
@@ -44,7 +44,7 @@ int main() {
     vector<vector<string>> colunas;
     bool primeiraLinha = true;
 
-    while (getline(arquivo, linha)) {
+    while (getline(arquivo, linha)) { //O(n × m) linha x coluna
         stringstream ss(linha);
         string celula;
         int i = 0;
@@ -61,6 +61,7 @@ int main() {
     }
     vector<vector<int>> pli0 = gerar_pli(colunas[0]);
     cout << "0 -> 1: " << (verifica_df(pli0, colunas[1]) ? "SIM" : "NAO") << endl;
+    cout << "0 -> 2: " << (verifica_df(pli0, colunas[2]) ? "SIM" : "NAO") << endl;
 
     return 0;
 }

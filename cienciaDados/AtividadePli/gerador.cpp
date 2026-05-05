@@ -7,7 +7,7 @@ using namespace std;
 int main() {
     ofstream arquivo("dados.csv");
 
-    for (int i = 0; i < 200; i++) {
+    for (int i = 0; i < 100000; i++) {
         // Criando um padrão: a cada 10 linhas o ID muda
         int id = i / 10; 
         string nomeCategoria = "Cat_" + to_string(id);
@@ -23,6 +23,6 @@ int main() {
     }
 
     arquivo.close();
-    cout << "Arquivo dados.csv gerado com 200 linhas!" << endl;
+    cout << "Arquivo dados.csv gerado!" << endl;
     return 0;
 }
