@@ -2,49 +2,65 @@
 #include <unordered_map>
 #include <vector>
 #include <string>
+#include <fstream>  
+#include <sstream>  
 
 using namespace std;
 
-void achar_imprimir_pli(char nome, string coluna[], int tamanho) {
-    unordered_map<string, vector<int>> grupos;
-    for (int i = 0; i < tamanho; i++) {
-        grupos[coluna[i]].push_back(i);
-    }
-    cout << "PLI da Coluna " << nome << ": ";
-    bool encontrou = false;
+vector<vector<int>> gerar_pli(const vector<string>& coluna) {
+    unordered_map<string, vector<int>> grupos; // criar os 'grupos' de valores iguais
+    vector<vector<int>> pli; // aux armazenar grupos com itens repetidos
+    int tamanho = coluna.size(); // obtém o tamanho dinamicamente
 
-    for (auto& par : grupos) {
-        if (par.second.size() > 1) {
-            encontrou = true;
-            cout << "[ ";
-            for (int idx : par.second) {
-                cout << idx << " ";
-            }
-            cout << "] ";
+    for (int i = 0; i < tamanho; i++) { // percorre a coluna e agrupa índices por valor (O(n))
+        grupos[coluna[i]].push_back(i); 
+    }
+
+    for (auto& par : grupos) { // percorre o grupo O(1) -> pior caso O(n)
+        if (par.second.size() > 1) { // mantém apenas valores que aparecem mais de uma vez (O(1))
+            pli.push_back(par.second); // adiciona o grupo de índices ao PLI
         }
     }
-    if (!encontrou) {
-        cout << "Sem duplicata";
+    return pli; //retorna o grupo de index
+}
+
+bool verifica_df(const vector<vector<int>>& pli_determinante, const vector<string>& coluna_dependente) {
+    // Para cada grupo da PLI da esquerda
+    for (const auto& grupo : pli_determinante) {
+        // Para cada vetor dentro do grupo, pega o primeiro valor na coluna dependente na quele index e compara com os proximos index 
+        string valor_referencia = coluna_dependente[grupo[0]];
+        for (size_t i = 1; i < grupo.size(); i++) {
+            if (coluna_dependente[grupo[i]] != valor_referencia) { //se alguem for diferente = NAO
+                return false; 
+            }
+        }
     }
-    cout << endl;
+    return true;
 }
 
 int main() {
-    int tamanho = 5;
-    string colunaA[tamanho] = {"kaiky", "kaiky", "1", "4", "1"};
-    string colunaB[tamanho] = {"9", "8", "l", "l", "8"};
-    string colunaC[tamanho] = {"3", "322s", "4", "3", "322s"};
-    string colunaD[tamanho] = {"0", "0", "1", "1", "0"};
+    ifstream arquivo("dados.csv");
+    string linha;
+    vector<vector<string>> colunas;
+    bool primeiraLinha = true;
 
-    cout << "--- Construindo as PLIs ---\n\n";
+    while (getline(arquivo, linha)) {
+        stringstream ss(linha);
+        string celula;
+        int i = 0;
 
-    achar_imprimir_pli('A', colunaA, tamanho);
-
-    achar_imprimir_pli('B', colunaB, tamanho);
-
-    achar_imprimir_pli('C', colunaC, tamanho);
-
-    achar_imprimir_pli('D', colunaD, tamanho);
+        while (getline(ss, celula, ',')) {
+            if (primeiraLinha) {
+                colunas.push_back({celula});
+            } else {
+                colunas[i].push_back(celula);
+            }
+            i++;
+        }
+        primeiraLinha = false;
+    }
+    vector<vector<int>> pli0 = gerar_pli(colunas[0]);
+    cout << "0 -> 1: " << (verifica_df(pli0, colunas[1]) ? "SIM" : "NAO") << endl;
 
     return 0;
 }
