@@ -1,0 +1,69 @@
+Questionario
+
+
+1 -
+O maior impacto positivo do uso do ponteiro fim foi no Cenário 1. 
+Nesse caso, como os elementos são inseridos em ordem, o novo dado 
+é sempre maior ou igual ao último nó da lista,permitindo que o 
+algoritmo utilize o 'atalho' de inserção direta no
+fim. Tecnicamente, essa otimização converte uma operação que 
+exigiria o percorrimento total da lista (O(n)) em uma operação 
+de tempo constante (O(1)). Sem esse ponteiro, o custo total de 
+construção da lista crescente seria quadrático (O(n²)), 
+enquanto com o ponteiro fim, o custo total torna-se linear 
+(O(n))
+
+==========================================================================
+
+2-
+As três execuções apresentaram totais de 
+comparações muito próximos: 246.288, 247.129 e 247.247
+
+Desta forma é possível afirmar que sim, houve estabilidade
+nos resultados
+
+No cenário aleatório, o ponteiro fim contribuiu apenas em 
+casos isolados, não sendo o fator principal de eficiência para 
+a maioria das inserções. Pois a probabilidade de um número ser
+maior do que o ponteiro fim é baixa
+
+==========================================================================
+
+3 - 
+
+Sim, existe uma tendência matemática onde a média de comparações 
+cresce proporcionalmente ao tamanho da lista (N)
+Esse valor se aproxima de N/2 pois em uma inserção aleatória com 
+distribuição uniforme, o novo elemento tem a mesma probabilidade 
+de ocupar qualquer posição da lista.
+Como a busca é linear e obrigatória para encontrar o ponto 
+correto de inserção. O algoritimo percorrerá em média, metade da
+lista até encontrar a possição adequada.
+
+==========================================================================
+
+4-
+
+É perigoso porque, ao liberar o nó com free(atual), o dados que
+contém o endereço do proxímo nó é perdido. Desta forma inutilizando
+todos os próximos elementos posterior ao nó destruido
+
+==========================================================================
+
+5 - 
+
+Para imprimir inverso, foi utilizado a estratégia de recursividade.
+Onde 
+void imprimirRecursivo(No* n) {
+    if (n == NULL) return; --Diz que a lista terminou
+    imprimirRecursivo(n->proximo); -- chama o próximo número
+    printf("%d ", n->dado); --  Aguarda a recursividade acabar para imprimir
+}
+
+void imprimirInverso(Lista* l) {
+    if (l->inicio == NULL) return;
+    imprimirRecursivo(l->inicio); --chama a função com um valor inicial
+}
+
+Formando uma 'pilha' onde o ultimo número da lista vai ser o 
+primeiro a ser impresso
