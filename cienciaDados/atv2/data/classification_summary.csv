@@ -1,3 +1,3 @@
 key,best_model,accuracy,macro_f1,weighted_f1,error
-adult,,,,,boolean value of NA is ambiguous
-bank_marketing,,,,,boolean value of NA is ambiguous
+adult,,,,,"Encoders require their input argument must be uniformly strings or numbers. Got ['NAType', 'str']"
+bank_marketing,,,,,"Encoders require their input argument must be uniformly strings or numbers. Got ['NAType', 'str']"
