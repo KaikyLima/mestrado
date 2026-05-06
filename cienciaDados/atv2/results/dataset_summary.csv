@@ -1,2 +1,5 @@
 Dataset,Tipo,Variável-Alvo,Linhas (raw),Colunas (raw),Nulos originais,Linhas (completo)
 adult,classification,income,48842,15,0,45222
+bank_marketing,classification,y,45211,17,0,7841
+air_quality_uci,regression,C6H6(GT),9357,13,0,827
+communities_crime,regression,ViolentCrimesPerPop,1994,123,36851,319
