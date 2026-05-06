@@ -5,6 +5,15 @@ pip install --upgrade pip
 pip install setuptools==65.5.0
 pip install wheel
 
-pip install -r requirements-Jenga.txt
+pip install -r requirements.txt
 
-pip install git+https://github.com/schelterlabs/jenga.git --no-build-isolation
+REM clonar jenga
+git clone https://github.com/schelterlabs/jenga.git
+
+REM instalar jenga no ambiente
+cd jenga
+pip install -e .
+cd ..
+
+echo Ambiente pronto!
+pause
