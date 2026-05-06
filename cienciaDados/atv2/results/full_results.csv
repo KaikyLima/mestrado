@@ -1,49 +1,49 @@
-dataset,task,mechanism,missing_rate,imputer,seed,error
-adult,classification,MCAR,0.05,dropna,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MCAR,0.15,dropna,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MCAR,0.3,dropna,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MCAR,0.05,mean,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MCAR,0.15,mean,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MCAR,0.3,mean,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MCAR,0.05,median,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MCAR,0.15,median,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MCAR,0.3,median,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MCAR,0.05,constant,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MCAR,0.15,constant,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MCAR,0.3,constant,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MCAR,0.15,knn_5,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MCAR,0.3,knn_5,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MCAR,0.15,iterative,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MCAR,0.3,iterative,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MAR,0.05,dropna,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MAR,0.15,dropna,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MAR,0.3,dropna,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MAR,0.05,mean,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MAR,0.15,mean,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MAR,0.3,mean,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MAR,0.05,median,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MAR,0.15,median,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MAR,0.3,median,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MAR,0.05,constant,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MAR,0.15,constant,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MAR,0.3,constant,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MAR,0.15,knn_5,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MAR,0.3,knn_5,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MAR,0.15,iterative,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MAR,0.3,iterative,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MNAR,0.05,dropna,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MNAR,0.15,dropna,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MNAR,0.3,dropna,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MNAR,0.05,mean,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MNAR,0.15,mean,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MNAR,0.3,mean,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MNAR,0.05,median,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MNAR,0.15,median,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MNAR,0.3,median,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MNAR,0.05,constant,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MNAR,0.15,constant,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MNAR,0.3,constant,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MNAR,0.15,knn_5,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MNAR,0.3,knn_5,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MNAR,0.15,iterative,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
-adult,classification,MNAR,0.3,iterative,42,run_single_experiment() got an unexpected keyword argument 'models_subset'
+dataset,task,mechanism,missing_rate,imputer,seed,random_forest__accuracy,random_forest__macro_f1,random_forest__weighted_f1,error,random_forest__error
+adult,classification,MCAR,0.05,dropna,42,0.7874396135265701,0.7365193242305021,0.7941543769502274,,
+adult,classification,MCAR,0.15,dropna,42,0.7317073170731707,0.5512437810945273,0.7108846013833272,,
+adult,classification,MCAR,0.3,dropna,42,,,,Dados insuficientes após dropna,
+adult,classification,MCAR,0.05,mean,42,,,,,boolean value of NA is ambiguous
+adult,classification,MCAR,0.15,mean,42,,,,,boolean value of NA is ambiguous
+adult,classification,MCAR,0.3,mean,42,,,,,boolean value of NA is ambiguous
+adult,classification,MCAR,0.05,median,42,,,,,boolean value of NA is ambiguous
+adult,classification,MCAR,0.15,median,42,,,,,boolean value of NA is ambiguous
+adult,classification,MCAR,0.3,median,42,,,,,boolean value of NA is ambiguous
+adult,classification,MCAR,0.05,constant,42,,,,,boolean value of NA is ambiguous
+adult,classification,MCAR,0.15,constant,42,,,,,boolean value of NA is ambiguous
+adult,classification,MCAR,0.3,constant,42,,,,,boolean value of NA is ambiguous
+adult,classification,MCAR,0.15,knn_5,42,,,,,boolean value of NA is ambiguous
+adult,classification,MCAR,0.3,knn_5,42,,,,,boolean value of NA is ambiguous
+adult,classification,MCAR,0.15,iterative,42,,,,,boolean value of NA is ambiguous
+adult,classification,MCAR,0.3,iterative,42,,,,,boolean value of NA is ambiguous
+adult,classification,MAR,0.05,dropna,42,0.7652582159624414,0.6971678798908099,0.7733481568818431,,
+adult,classification,MAR,0.15,dropna,42,0.8170731707317073,0.685823754789272,0.7947855340622372,,
+adult,classification,MAR,0.3,dropna,42,0.84,0.6212121212121212,0.8169696969696969,,
+adult,classification,MAR,0.05,mean,42,,,,,boolean value of NA is ambiguous
+adult,classification,MAR,0.15,mean,42,,,,,boolean value of NA is ambiguous
+adult,classification,MAR,0.3,mean,42,,,,,boolean value of NA is ambiguous
+adult,classification,MAR,0.05,median,42,,,,,boolean value of NA is ambiguous
+adult,classification,MAR,0.15,median,42,,,,,boolean value of NA is ambiguous
+adult,classification,MAR,0.3,median,42,,,,,boolean value of NA is ambiguous
+adult,classification,MAR,0.05,constant,42,,,,,boolean value of NA is ambiguous
+adult,classification,MAR,0.15,constant,42,,,,,boolean value of NA is ambiguous
+adult,classification,MAR,0.3,constant,42,,,,,boolean value of NA is ambiguous
+adult,classification,MAR,0.15,knn_5,42,,,,,boolean value of NA is ambiguous
+adult,classification,MAR,0.3,knn_5,42,,,,,boolean value of NA is ambiguous
+adult,classification,MAR,0.15,iterative,42,,,,,boolean value of NA is ambiguous
+adult,classification,MAR,0.3,iterative,42,,,,,boolean value of NA is ambiguous
+adult,classification,MNAR,0.05,dropna,42,0.7882882882882883,0.7330297060102857,0.7975892377806253,,
+adult,classification,MNAR,0.15,dropna,42,0.7708333333333334,0.6647619047619048,0.7590476190476191,,
+adult,classification,MNAR,0.3,dropna,42,0.4,0.2857142857142857,0.5714285714285714,,
+adult,classification,MNAR,0.05,mean,42,,,,,boolean value of NA is ambiguous
+adult,classification,MNAR,0.15,mean,42,,,,,boolean value of NA is ambiguous
+adult,classification,MNAR,0.3,mean,42,,,,,boolean value of NA is ambiguous
+adult,classification,MNAR,0.05,median,42,,,,,boolean value of NA is ambiguous
+adult,classification,MNAR,0.15,median,42,,,,,boolean value of NA is ambiguous
+adult,classification,MNAR,0.3,median,42,,,,,boolean value of NA is ambiguous
+adult,classification,MNAR,0.05,constant,42,,,,,boolean value of NA is ambiguous
+adult,classification,MNAR,0.15,constant,42,,,,,boolean value of NA is ambiguous
+adult,classification,MNAR,0.3,constant,42,,,,,boolean value of NA is ambiguous
+adult,classification,MNAR,0.15,knn_5,42,,,,,boolean value of NA is ambiguous
+adult,classification,MNAR,0.3,knn_5,42,,,,,boolean value of NA is ambiguous
+adult,classification,MNAR,0.15,iterative,42,,,,,boolean value of NA is ambiguous
+adult,classification,MNAR,0.3,iterative,42,,,,,boolean value of NA is ambiguous
