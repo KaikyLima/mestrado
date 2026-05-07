@@ -1,3 +1,3 @@
 key,best_model,accuracy,macro_f1,weighted_f1,error
-adult,,,,,"Encoders require their input argument must be uniformly strings or numbers. Got ['NAType', 'str']"
-bank_marketing,,,,,"Encoders require their input argument must be uniformly strings or numbers. Got ['NAType', 'str']"
+adult,random_forest,0.82,0.7272,0.8126,
+bank_marketing,random_forest,0.8733,0.5778,0.8462,
