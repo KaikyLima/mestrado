@@ -1,3 +1,3 @@
-key,best_model,accuracy,macro_f1,weighted_f1,error
-adult,lightgbm,0.815,0.771,0.8249,
-bank_marketing,lightgbm,0.8617,0.7348,0.8742,
+dataset,model,accuracy,macro_f1,weighted_f1
+adult,lightgbm,0.8183,0.7709,0.8263
+bank_marketing,lightgbm,0.8706,0.7426,0.8817
