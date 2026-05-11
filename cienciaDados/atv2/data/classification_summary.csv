@@ -1,3 +1,3 @@
 dataset,model,accuracy,macro_f1,weighted_f1
-adult,lightgbm,0.8183,0.7709,0.8263
-bank_marketing,lightgbm,0.8706,0.7426,0.8817
+adult,random_forest,0.8551,0.7875,0.85
+bank_marketing,random_forest,0.9037,0.6989,0.8891
