@@ -104,7 +104,7 @@ Contém três células independentes que podem ser rodadas a qualquer momento:
 ├── requirements.txt            # Dependências Python
 ├── README.md                   # Este arquivo
 │
-├── lab2Test_modified.ipynb     # Notebook principal dos experimentos
+├── lab2_base.ipynb             # Notebook principal dos experimentos
 ├── utils.ipynb                 # Utilitários
 │
 ├── jenga/                      # Biblioteca Jenga (clonada pelo instalador)
@@ -167,3 +167,9 @@ Contém três células independentes que podem ser rodadas a qualquer momento:
 
 - O instalador foi testado apenas em **Windows 10/11** com PowerShell.
 - O miceforest foi executado com `iterations=1` e `max_cols=30` por limitação computacional.
+
+
+
+## Uso de Inteligência Artificial
+
+Este projeto utilizou o Claude (Anthropic) como auxílio na depuração do código Python, otimização do pipeline de execução paralela e estruturação do relatório.
