@@ -1,0 +1,7 @@
+,dataset,mechanism,mae_mean,mae_std,rmse_mean,r2_mean,r2_std
+0,air_quality_uci,MAR,0.5019,0.6403,1.0557,0.9281,0.2323
+1,air_quality_uci,MCAR,0.71,0.9629,1.4052,0.901,0.529
+2,air_quality_uci,MNAR,0.5038,0.8013,0.9732,0.5376,3.9514
+3,communities_crime,MAR,0.0948,0.006,0.1408,0.6153,0.0326
+4,communities_crime,MCAR,0.095,0.0042,0.1404,0.6189,0.0324
+5,communities_crime,MNAR,0.0949,0.0084,0.1403,0.6157,0.0607
