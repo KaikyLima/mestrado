@@ -1,0 +1,7 @@
+,dataset,model,mae_mean,r2_mean,r2_std
+1,air_quality_uci,random_forest,0.4441,0.9483,0.2094
+2,air_quality_uci,ridge_regression,1.4351,0.8922,0.2855
+0,air_quality_uci,lightgbm,0.5719,0.7895,2.3034
+3,communities_crime,lightgbm,0.0949,0.6167,0.0439
+4,communities_crime,random_forest,0.0977,0.6126,0.0434
+5,communities_crime,ridge_regression,0.1031,0.5753,0.3539

@@ -1,0 +1,27 @@
+{
+  "key": "communities_crime",
+  "task": "regression",
+  "target": "ViolentCrimesPerPop",
+  "shape_original": [
+    1994,
+    123
+  ],
+  "shape_after_dropna": [
+    319,
+    123
+  ],
+  "test_size": 0.2,
+  "random_state": 42,
+  "results": {
+    "ridge_regression": {
+      "mae": 0.15789988098537183,
+      "rmse": 0.20594674450926656,
+      "r2": 0.4095888919767289
+    },
+    "random_forest": {
+      "mae": 0.11097109375,
+      "rmse": 0.14579492084881593,
+      "r2": 0.7041105734866908
+    }
+  }
+}

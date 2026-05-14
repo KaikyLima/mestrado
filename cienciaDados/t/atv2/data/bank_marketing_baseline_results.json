@@ -1,0 +1,27 @@
+{
+  "key": "bank_marketing",
+  "task": "classification",
+  "target": "y",
+  "shape_original": [
+    45211,
+    17
+  ],
+  "shape_after_dropna": [
+    7841,
+    17
+  ],
+  "test_size": 0.2,
+  "random_state": 42,
+  "results": {
+    "logistic_regression": {
+      "accuracy": 0.8247291268323773,
+      "macro_f1": 0.7802325137203469,
+      "weighted_f1": 0.834120055095398
+    },
+    "random_forest": {
+      "accuracy": 0.8463989802421925,
+      "macro_f1": 0.7574947362885367,
+      "weighted_f1": 0.8375085558468269
+    }
+  }
+}

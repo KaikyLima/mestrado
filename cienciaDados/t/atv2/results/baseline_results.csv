@@ -1,0 +1,2 @@
+dataset,task,mechanism,missing_rate,imputer,seed,logistic_regression__accuracy,logistic_regression__macro_f1,logistic_regression__weighted_f1,random_forest__accuracy,random_forest__macro_f1,random_forest__weighted_f1,lightgbm__accuracy,lightgbm__macro_f1,lightgbm__weighted_f1
+adult,classification,NONE,0.0,dropna,42,0.8091763405196241,0.7742666199497235,0.8190299698286431,0.7904919845218352,0.7603454610892633,0.8032065251092013,0.8310668877833057,0.7976652260988721,0.8391196421377024

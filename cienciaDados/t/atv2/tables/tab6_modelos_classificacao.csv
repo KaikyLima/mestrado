@@ -1,0 +1,7 @@
+,dataset,model,acc_mean,acc_std,mf1_mean,wf1_mean
+0,adult,lightgbm,0.8172,0.0505,0.7802,0.8267
+1,adult,logistic_regression,0.7923,0.0256,0.7532,0.8045
+2,adult,random_forest,0.78,0.0267,0.7444,0.7941
+3,bank_marketing,lightgbm,0.8395,0.0436,0.7288,0.8572
+5,bank_marketing,random_forest,0.8372,0.0337,0.7168,0.8539
+4,bank_marketing,logistic_regression,0.8203,0.0355,0.7007,0.843

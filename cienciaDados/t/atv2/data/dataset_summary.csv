@@ -1,0 +1,5 @@
+Dataset,Tarefa,Variável-alvo,Linhas originais,Colunas (features),Nulos originais,Linhas (completo)
+adult,Classificação,income,48842,14,6465,45222
+bank_marketing,Classificação,y,45211,16,52127,7841
+air_quality_uci,Regressão,C6H6(GT),9357,12,16701,827
+communities_crime,Regressão,ViolentCrimesPerPop,1994,122,36851,319
