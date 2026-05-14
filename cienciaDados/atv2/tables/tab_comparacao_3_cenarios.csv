@@ -1,0 +1,5 @@
+Dataset,Metrica,Baseline (1% nulos),Dropna Injetado,Melhor Imputador,Melhor Valor
+adult,Accuracy,0.8328,0.8065,simple_const,0.8222
+bank_marketing,Accuracy,0.8545,0.8099,simple_mean,0.8479
+air_quality_uci,R2,0.996,-0.9002,iterative,0.9908
+communities_crime,R2,0.628,0.5155,iterative,0.6255
