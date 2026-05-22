@@ -1,2 +1,0 @@
-Dataset,Tipo,Variável-Alvo,Linhas (raw),Colunas (raw),Nulos originais,Linhas (completo)
-adult,classification,income,48842,15,0,45222
