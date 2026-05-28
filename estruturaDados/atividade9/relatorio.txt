@@ -1,0 +1,7 @@
+Ao executar a simulação com as duas implementações, a saída foi idêntica nas duas versões, o que confirma que o comportamento do heap máximo é o mesmo independente de como ele é implementado por baixo. 
+A diferença está em como cada uma usa a memória. Na versão com vetor (heap.c), todos os elementos ficam em um bloco contínuo de memória, o que é melhor para o cache do processador, pois os dados estão próximos uns dos outros. 
+Na versão com ponteiros (heap_ponteiro.c), cada nó é alocado separadamente com malloc, espalhando os dados pela memória e fazendo o processador buscar dados em lugares diferentes, o que é mais lento. 
+Para um hospital com 2.000 atendimentos por dia, as duas versões funcionariam bem, porque a fila nunca teria muitos pacientes ao mesmo tempo. 
+Porém, a versão com vetor ainda seria mais eficiente por usar menos memória, já que não precisa guardar os ponteiros de pai, filho esquerdo e filho direito em cada nó. 
+A notação O(log N) não mostra essa diferença porque ela só diz como o tempo cresce com o tamanho da entrada, ignorando detalhes do hardware como cache e memória. 
+Por isso, dois algoritmos com o mesmo O(log N) podem ter desempenhos bem diferentes na prática.
