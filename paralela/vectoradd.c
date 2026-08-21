@@ -4,6 +4,7 @@
 #include <sys/shm.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <sys/wait.h>
 
 // Size of vectors.
 #ifndef N
@@ -99,6 +100,7 @@ int main() {
     for (i = 0; i < aux; i++){
       shm->h_c[i] = h_a[i] + h_b[i];
     }
+    wait(NULL);
   }
   /* Calculo. */
   /*
@@ -107,8 +109,11 @@ int main() {
   }
   */
   /* Resultados. */
-  print_array(shm);
-  check_result(shm);
+  if (pid > 0){
+    print_array(shm);
+    check_result(shm);
+  };
+
 
   return 0;
 }
