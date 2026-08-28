@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <pthread.h>
 
-// Entrada e saída.
+// Entrada e saï¿½da.
 float *h_a;
 float *h_b;
 float *h_c;
@@ -51,8 +51,8 @@ void *vecadd(void *ptr) {
 
   fprintf(stdout, "   Thread[%lu,%lu]: Got the partition [%lu, %lu]: %lu.\n", *id, (long int) pthread_self(), ii, ff,  (ff - ii));
 
-  /* A sobra n - ff sempre será maior que uma particao até a penúltima thread. Na última thread se sobrar algumas iterações
-  no final, a última thread assume estendendo seu ff para n. */ 
+  /* A sobra n - ff sempre serï¿½ maior que uma particao atï¿½ a penï¿½ltima thread. Na ï¿½ltima thread se sobrar algumas iteraï¿½ï¿½es
+  no final, a ï¿½ltima thread assume estendendo seu ff para n. */ 
   if((n - ff) < partition){
     ff = n;
   }
@@ -116,7 +116,7 @@ int main(int argc, char *argv[]) {
   fprintf(stdout, "Thread[%lu]: All Threads were finished.\n", (long int) pthread_self());
   
   fprintf(stdout, "Thread[%lu]: Printing the Result.\n", (long int) pthread_self());
-  print_array(num_elements);
+  //print_array(num_elements);
 	
   fprintf(stdout, "Thread[%lu]: Checking the Result.\n", (long int) pthread_self());
   check_result(num_elements);

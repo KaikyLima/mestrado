@@ -5,7 +5,7 @@
 #include <inttypes.h>
 #include <stdbool.h>
 
-// Entrada e saída.
+// Entrada e saï¿½da.
 float *h_a;
 float *h_b;
 float *h_c;
@@ -154,7 +154,7 @@ int main(int argc, char *argv[]) {
   fprintf(stdout, "Thread[%lu]: All threads were finished.\n", (long int) pthread_self());
   
   fprintf(stdout, "Thread[%lu]: Printing the result.\n", (long int) pthread_self());
-  print_array(num_elements);
+  //print_array(num_elements);
 
   fprintf(stdout, "Thread[%lu]: Checking the result.\n", (long int) pthread_self());
   check_result(num_elements);
