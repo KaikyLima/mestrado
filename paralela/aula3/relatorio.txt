@@ -1,0 +1,73 @@
+vectoradd-pthreads-distribuicao-dinamica
+
+time ./vectoradd.exe 1000000 1 32
+real    0m0.233s
+user    0m0.036s
+sys     0m0.192s
+
+time ./vectoradd.exe 1000000 1 64
+real    0m0.097s
+user    0m0.012s
+sys     0m0.080s
+
+time ./vectoradd.exe 1000000 1 128
+real    0m0.077s
+user    0m0.024s
+sys     0m0.048s
+
+time ./vectoradd.exe 1000000 1 256
+real    0m0.043s
+user    0m0.008s
+sys     0m0.033s
+
+time ./vectoradd.exe 1000000 1 512
+real    0m0.038s
+user    0m0.005s
+sys     0m0.028s
+
+time ./vectoradd.exe 1000000 1 1024
+real    0m0.027s
+user    0m0.004s
+sys     0m0.019s
+
+
+
+
+vectoradd-pthreads-distribuicao-estatica
+
+time ./vectoradd.exe 1000000 1
+real    0m0.020s
+user    0m0.012s
+sys     0m0.005s
+
+./vectoradd.exe 1000000 2
+real    0m0.015s
+user    0m0.003s
+sys     0m0.013s
+
+time ./vectoradd.exe 1000000 4
+real    0m0.015s
+user    0m0.008s
+sys     0m0.008s
+
+
+time ./vectoradd.exe 1000000 8
+real    0m0.013s
+user    0m0.013s
+sys     0m0.000s
+
+
+time ./vectoradd.exe 1000000 16
+real    0m0.015s
+user    0m0.005s
+sys     0m0.011s
+
+
+
+
+vectoradd-sequencial
+
+time ./vectoradd.exe 100000
+real    0m1.875s
+user    0m0.544s
+sys     0m1.329s

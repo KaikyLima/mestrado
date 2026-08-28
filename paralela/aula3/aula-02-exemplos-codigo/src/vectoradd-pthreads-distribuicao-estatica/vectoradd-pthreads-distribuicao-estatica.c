@@ -49,7 +49,7 @@ void *vecadd(void *ptr) {
   ii = (*id) * partition;
   ff = ii + partition; // ff = (ii + 1) * partition;
 
-  fprintf(stdout, "   Thread[%lu,%lu]: Got the partition [%lu, %lu]: %lu.\n", *id, (long int) pthread_self(), ii, ff,  (ff - ii));
+  //fprintf(stdout, "   Thread[%lu,%lu]: Got the partition [%lu, %lu]: %lu.\n", *id, (long int) pthread_self(), ii, ff,  (ff - ii));
 
   /* A sobra n - ff sempre ser� maior que uma particao at� a pen�ltima thread. Na �ltima thread se sobrar algumas itera��es
   no final, a �ltima thread assume estendendo seu ff para n. */ 
@@ -57,13 +57,13 @@ void *vecadd(void *ptr) {
     ff = n;
   }
 
-  fprintf(stdout, "   Thread[%lu,%lu]: Working on partition [%lu..%lu]: %lu.\n", *id, (long int) pthread_self(), ii, ff, (ff - ii));
+  //fprintf(stdout, "   Thread[%lu,%lu]: Working on partition [%lu..%lu]: %lu.\n", *id, (long int) pthread_self(), ii, ff, (ff - ii));
   
   for (i = ii; i < ff; i++) {
     h_c[i] = h_a[i] + h_b[i];
   }
 
-  fprintf(stdout, "   Thread[%lu,%lu]: Exiting.\n", *id, (long int) pthread_self());
+  //fprintf(stdout, "   Thread[%lu,%lu]: Exiting.\n", *id, (long int) pthread_self());
   pthread_exit(0);
 }
 

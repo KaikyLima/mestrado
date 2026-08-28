@@ -147,19 +147,19 @@ int main(int argc, char *argv[]) {
   }
   
   for(i=0; i<num_threads; i++){
-    fprintf(stdout, "Thread[%lu]: Waiting for ending of execution Thread[%d].\n", (long int) pthread_self(),i);
+    //fprintf(stdout, "Thread[%lu]: Waiting for ending of execution Thread[%d].\n", (long int) pthread_self(),i);
     pthread_join(threads[i], NULL);
   }
 
-  fprintf(stdout, "Thread[%lu]: All threads were finished.\n", (long int) pthread_self());
+  //fprintf(stdout, "Thread[%lu]: All threads were finished.\n", (long int) pthread_self());
   
-  fprintf(stdout, "Thread[%lu]: Printing the result.\n", (long int) pthread_self());
+  //fprintf(stdout, "Thread[%lu]: Printing the result.\n", (long int) pthread_self());
   //print_array(num_elements);
 
   fprintf(stdout, "Thread[%lu]: Checking the result.\n", (long int) pthread_self());
   check_result(num_elements);
 
-  fprintf(stdout, "Thread[%lu]: Releasing Allocated Memory.\n", (long int) pthread_self());
+  //fprintf(stdout, "Thread[%lu]: Releasing Allocated Memory.\n", (long int) pthread_self());
   free(h_a);
   free(h_b);
   free(h_c);
