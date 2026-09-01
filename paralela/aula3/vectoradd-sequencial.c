@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <pthread.h>
 
-// Entrada e saída.
+// Entrada e saï¿½da.
 float *h_a;
 float *h_b;
 float *h_c;
@@ -78,7 +78,7 @@ int main(int argc, char *argv[]) {
   vecadd(num_elements);
   
   fprintf(stdout, "Thread[%lu]: Printing the Result.\n", (long int) pthread_self());
-  print_array(num_elements);
+  //print_array(num_elements);
 	
   fprintf(stdout, "Thread[%lu]: Checking the Result.\n", (long int) pthread_self());
   check_result(num_elements);
