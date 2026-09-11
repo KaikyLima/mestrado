@@ -1,0 +1,17 @@
+main ()
+{
+  int D.2234;
+
+  {
+    #pragma omp parallel
+      {
+
+      }
+    D.2234 = 0;
+    return D.2234;
+  }
+  D.2234 = 0;
+  return D.2234;
+}
+
+

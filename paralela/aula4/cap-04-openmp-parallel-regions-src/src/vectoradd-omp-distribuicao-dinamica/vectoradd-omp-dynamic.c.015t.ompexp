@@ -1,0 +1,526 @@
+
+;; Function init_array (init_array, funcdef_no=2, decl_uid=2853, cgraph_uid=2)
+
+init_array (int n)
+{
+  int i;
+  float * D.2913;
+  long unsigned int D.2912;
+  long unsigned int D.2911;
+  float * h_b.2;
+  float * D.2909;
+  long unsigned int D.2908;
+  long unsigned int D.2907;
+  float * h_a.1;
+  struct _IO_FILE * stdout.0;
+  long int D.2904;
+  int D.2903;
+
+  <bb 2>:
+  D.2903 = pthread_self ();
+  D.2904 = (long int) D.2903;
+  stdout.0 = stdout;
+  fprintf (stdout.0, "Thread[%lu]: Initializing the arrays.\n", D.2904);
+  i = 0;
+  goto <bb 4>;
+
+  <bb 3>:
+  h_a.1 = h_a;
+  D.2907 = (long unsigned int) i;
+  D.2908 = D.2907 * 4;
+  D.2909 = h_a.1 + D.2908;
+  *D.2909 = 5.0e-1;
+  h_b.2 = h_b;
+  D.2911 = (long unsigned int) i;
+  D.2912 = D.2911 * 4;
+  D.2913 = h_b.2 + D.2912;
+  *D.2913 = 5.0e-1;
+  i = i + 1;
+
+  <bb 4>:
+  if (i < n)
+    goto <bb 3>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  return;
+
+}
+
+
+
+;; Function print_array (print_array, funcdef_no=3, decl_uid=2862, cgraph_uid=3)
+
+print_array (int n)
+{
+  int i;
+  struct _IO_FILE * stdout.4;
+  long int D.2921;
+  int D.2920;
+  double D.2919;
+  float D.2918;
+  float * D.2917;
+  long unsigned int D.2916;
+  long unsigned int D.2915;
+  float * h_c.3;
+
+  <bb 2>:
+  i = 0;
+  goto <bb 4>;
+
+  <bb 3>:
+  h_c.3 = h_c;
+  D.2915 = (long unsigned int) i;
+  D.2916 = D.2915 * 4;
+  D.2917 = h_c.3 + D.2916;
+  D.2918 = *D.2917;
+  D.2919 = (double) D.2918;
+  D.2920 = pthread_self ();
+  D.2921 = (long int) D.2920;
+  stdout.4 = stdout;
+  fprintf (stdout.4, "Thread[%lu]: h_c[%07d]: %f.\n", D.2921, i, D.2919);
+  i = i + 1;
+
+  <bb 4>:
+  if (i < n)
+    goto <bb 3>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  return;
+
+}
+
+
+
+;; Function check_result (check_result, funcdef_no=4, decl_uid=2870, cgraph_uid=4)
+
+check_result (int n)
+{
+  float sum;
+  int i;
+  struct _IO_FILE * stdout.7;
+  long int D.2936;
+  int D.2935;
+  double D.2934;
+  double D.2933;
+  float D.2932;
+  float D.2931;
+  float D.2930;
+  float * D.2929;
+  long unsigned int D.2928;
+  long unsigned int D.2927;
+  float * h_c.6;
+  struct _IO_FILE * stdout.5;
+  long int D.2924;
+  int D.2923;
+
+  <bb 2>:
+  sum = 0.0;
+  D.2923 = pthread_self ();
+  D.2924 = (long int) D.2923;
+  stdout.5 = stdout;
+  fprintf (stdout.5, "Thread[%lu]: Checking.\n", D.2924);
+  i = 0;
+  goto <bb 4>;
+
+  <bb 3>:
+  h_c.6 = h_c;
+  D.2927 = (long unsigned int) i;
+  D.2928 = D.2927 * 4;
+  D.2929 = h_c.6 + D.2928;
+  D.2930 = *D.2929;
+  sum = D.2930 + sum;
+  i = i + 1;
+
+  <bb 4>:
+  if (i < n)
+    goto <bb 3>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  D.2931 = (float) n;
+  D.2932 = sum / D.2931;
+  D.2933 = (double) D.2932;
+  D.2934 = (double) sum;
+  D.2935 = pthread_self ();
+  D.2936 = (long int) D.2935;
+  stdout.7 = stdout;
+  fprintf (stdout.7, "Thread[%lu]: Final Result: (%f, %f).\n", D.2936, D.2934, D.2933);
+  return;
+
+}
+
+
+
+;; Function get_next_loop_partition (get_next_loop_partition, funcdef_no=5, decl_uid=2880, cgraph_uid=5)
+
+get_next_loop_partition (long int * ii, long int * ff)
+{
+  _Bool ret;
+  _Bool D.2968;
+  struct _IO_FILE * stdout.19;
+  long int D.2966;
+  int D.2965;
+  long int D.2964;
+  long int D.2963;
+  _Bool work_finished.18;
+  int total_of_iterations.17;
+  int last_assigned.16;
+  int last_assigned.15;
+  long int D.2958;
+  long int D.2957;
+  int total_of_iterations.14;
+  long int D.2953;
+  int total_of_iterations.13;
+  long int D.2951;
+  long int D.2950;
+  int D.2949;
+  int partition.12;
+  int last_assigned.11;
+  long int D.2946;
+  int last_assigned.10;
+  _Bool work_finished.9;
+  struct _IO_FILE * stdout.8;
+  long int D.2939;
+  int D.2938;
+
+  <bb 2>:
+  ret = 1;
+  *ii = 0;
+  *ff = 0;
+  D.2938 = pthread_self ();
+  D.2939 = (long int) D.2938;
+  stdout.8 = stdout;
+  fprintf (stdout.8, "Thread[%lu]: Trying to get the next partition.\n", D.2939);
+  sem_wait (&mutex);
+  work_finished.9 = work_finished;
+  if (work_finished.9 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  ret = 0;
+  goto <bb 7>;
+
+  <bb 4>:
+  last_assigned.10 = last_assigned;
+  D.2946 = (long int) last_assigned.10;
+  *ii = D.2946;
+  last_assigned.11 = last_assigned;
+  partition.12 = partition;
+  D.2949 = last_assigned.11 + partition.12;
+  D.2950 = (long int) D.2949;
+  *ff = D.2950;
+  D.2951 = *ff;
+  total_of_iterations.13 = total_of_iterations;
+  D.2953 = (long int) total_of_iterations.13;
+  if (D.2951 > D.2953)
+    goto <bb 5>;
+  else
+    goto <bb 6>;
+
+  <bb 5>:
+  total_of_iterations.14 = total_of_iterations;
+  D.2957 = (long int) total_of_iterations.14;
+  *ff = D.2957;
+
+  <bb 6>:
+  D.2958 = *ff;
+  last_assigned.15 = (int) D.2958;
+  last_assigned = last_assigned.15;
+  ret = 1;
+  last_assigned.16 = last_assigned;
+  total_of_iterations.17 = total_of_iterations;
+  work_finished.18 = last_assigned.16 == total_of_iterations.17;
+  work_finished = work_finished.18;
+
+  <bb 7>:
+  sem_post (&mutex);
+  D.2963 = *ff;
+  D.2964 = *ii;
+  D.2965 = pthread_self ();
+  D.2966 = (long int) D.2965;
+  stdout.19 = stdout;
+  fprintf (stdout.19, "Thread[%lu]: Got the partition [%lu, %lu].\n", D.2966, D.2964, D.2963);
+  D.2968 = ret;
+
+<L5>:
+  return D.2968;
+
+}
+
+
+
+;; Function main (main, funcdef_no=6, decl_uid=2886, cgraph_uid=6)
+
+
+OMP region tree
+
+bb 4: gimple_omp_parallel
+bb 12: GIMPLE_OMP_RETURN
+
+Merging blocks 4 and 16
+Merging blocks 4 and 13
+main (int argc, char * * argv)
+{
+  unsigned int num_threads.45;
+  _Bool have_work;
+  long int ff;
+  long int ii;
+  long int id;
+  int num_threads;
+  int num_elements;
+  int i;
+  int D.3047;
+  struct _IO_FILE * stdout.43;
+  long int D.3045;
+  int D.3044;
+  struct _IO_FILE * stdout.42;
+  long int D.3042;
+  int D.3041;
+  struct _IO_FILE * stdout.41;
+  long int D.3039;
+  int D.3038;
+  struct _IO_FILE * stdout.40;
+  long int D.3036;
+  int D.3035;
+  struct _IO_FILE * stdout.27;
+  long int D.2997;
+  int D.2996;
+  void * h_c.26;
+  long unsigned int D.2994;
+  long unsigned int D.2993;
+  void * h_b.25;
+  long unsigned int D.2991;
+  long unsigned int D.2990;
+  void * h_a.24;
+  long unsigned int D.2988;
+  long unsigned int D.2987;
+  struct _IO_FILE * stdout.23;
+  long int D.2985;
+  int D.2984;
+  struct _IO_FILE * stdout.22;
+  long int D.2982;
+  int D.2981;
+  int partition.21;
+  char * D.2979;
+  char * * D.2978;
+  char * D.2977;
+  char * * D.2976;
+  char * D.2975;
+  char * * D.2974;
+  struct _IO_FILE * stderr.20;
+  char * D.2972;
+
+  <bb 2>:
+  num_threads = 0;
+  if (argc <= 3)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  D.2972 = *argv;
+  stderr.20 = stderr;
+  fprintf (stderr.20, "Uso: %s <num_elements> <num_threads> <partition_size>\n", D.2972);
+  exit (0);
+
+  <bb 4>:
+  D.2974 = argv + 8;
+  D.2975 = *D.2974;
+  num_elements = atoi (D.2975);
+  D.2976 = argv + 16;
+  D.2977 = *D.2976;
+  num_threads = atoi (D.2977);
+  D.2978 = argv + 24;
+  D.2979 = *D.2978;
+  partition.21 = atoi (D.2979);
+  partition = partition.21;
+  total_of_iterations = num_elements;
+  D.2981 = pthread_self ();
+  D.2982 = (long int) D.2981;
+  stdout.22 = stdout;
+  fprintf (stdout.22, "Thread[%lu]: num_elements: %d num_threads: %d.\n", D.2982, num_elements, num_threads);
+  D.2984 = pthread_self ();
+  D.2985 = (long int) D.2984;
+  stdout.23 = stdout;
+  fprintf (stdout.23, "Thread[%lu]: Allocating the arrays.\n", D.2985);
+  D.2987 = (long unsigned int) num_elements;
+  D.2988 = D.2987 * 4;
+  h_a.24 = malloc (D.2988);
+  h_a = h_a.24;
+  D.2990 = (long unsigned int) num_elements;
+  D.2991 = D.2990 * 4;
+  h_b.25 = malloc (D.2991);
+  h_b = h_b.25;
+  D.2993 = (long unsigned int) num_elements;
+  D.2994 = D.2993 * 4;
+  h_c.26 = malloc (D.2994);
+  h_c = h_c.26;
+  init_array (num_elements);
+  sem_init (&mutex, 0, 1);
+  work_finished = 0;
+  D.2996 = pthread_self ();
+  D.2997 = (long int) D.2996;
+  stdout.27 = stdout;
+  fprintf (stdout.27, "Thread[%lu]: Creating the Threads.\n", D.2997);
+  num_threads.45 = (unsigned int) num_threads;
+  __builtin_GOMP_parallel_start (main._omp_fn.0, 0B, num_threads.45);
+  main._omp_fn.0 (0B);
+  __builtin_GOMP_parallel_end ();
+  D.3035 = pthread_self ();
+  D.3036 = (long int) D.3035;
+  stdout.40 = stdout;
+  fprintf (stdout.40, "Thread[%lu]: All threads were finished.\n", D.3036);
+  D.3038 = pthread_self ();
+  D.3039 = (long int) D.3038;
+  stdout.41 = stdout;
+  fprintf (stdout.41, "Thread[%lu]: Printing the result.\n", D.3039);
+  D.3041 = pthread_self ();
+  D.3042 = (long int) D.3041;
+  stdout.42 = stdout;
+  fprintf (stdout.42, "Thread[%lu]: Checking the result.\n", D.3042);
+  check_result (num_elements);
+  D.3044 = pthread_self ();
+  D.3045 = (long int) D.3044;
+  stdout.43 = stdout;
+  fprintf (stdout.43, "Thread[%lu]: Fui, Tchau!\n", D.3045);
+  D.3047 = 0;
+  ii = {CLOBBER};
+  ff = {CLOBBER};
+
+<L11>:
+  return D.3047;
+
+}
+
+
+
+;; Function main._omp_fn.0 (main._omp_fn.0, funcdef_no=7, decl_uid=3049, cgraph_uid=15)
+
+main._omp_fn.0 (void * .omp_data_i)
+{
+  float D.3108;
+  float D.3107;
+  float * D.3106;
+  long unsigned int D.3105;
+  long unsigned int D.3104;
+  float * h_b.36;
+  float D.3102;
+  float * D.3101;
+  long unsigned int D.3100;
+  long unsigned int D.3099;
+  float * h_a.35;
+  float * D.3097;
+  long unsigned int D.3096;
+  long unsigned int D.3095;
+  float * h_c.34;
+  long int ff.37;
+  long int D.3092;
+  int i;
+  long int ii.33;
+  struct _IO_FILE * stdout.32;
+  long int D.3088;
+  int D.3087;
+  long int ii.31;
+  long int ff.30;
+  long int D.3084;
+  long int ii.29;
+  long int ff.28;
+  struct _IO_FILE * stdout.38;
+  long int D.3080;
+  int D.3079;
+  struct _IO_FILE * stdout.39;
+  long int D.3077;
+  int D.3076;
+  _Bool D.3075;
+  long int ff;
+  long int ii;
+  _Bool have_work;
+  long int id;
+  int D.3070;
+
+  <bb 15>:
+
+  <bb 5>:
+  D.3070 = omp_get_thread_num ();
+  id = (long int) D.3070;
+  have_work = 0;
+
+  <bb 9>:
+  have_work = get_next_loop_partition (&ii, &ff);
+  if (have_work != 0)
+    goto <bb 6>;
+  else
+    goto <bb 10>;
+
+  <bb 10>:
+  D.3075 = ~have_work;
+  if (D.3075 != 0)
+    goto <bb 11>;
+  else
+    goto <bb 12>;
+
+  <bb 12>:
+  D.3076 = pthread_self ();
+  D.3077 = (long int) D.3076;
+  stdout.39 = stdout;
+  fprintf (stdout.39, "  Thread[%lu]: Exiting.\n", D.3077);
+  return;
+
+  <bb 11>:
+  D.3079 = pthread_self ();
+  D.3080 = (long int) D.3079;
+  stdout.38 = stdout;
+  fprintf (stdout.38, "  Thread[%lu]: No work to do.\n", D.3080);
+  goto <bb 12>;
+
+  <bb 6>:
+  ff.28 = ff;
+  ii.29 = ii;
+  D.3084 = ff.28 - ii.29;
+  ff.30 = ff;
+  ii.31 = ii;
+  D.3087 = pthread_self ();
+  D.3088 = (long int) D.3087;
+  stdout.32 = stdout;
+  fprintf (stdout.32, "   Thread[%lu,%lu]: Working on partition: [%d..%d]: %d.\n", id, D.3088, ii.31, ff.30, D.3084);
+  ii.33 = ii;
+  i = (int) ii.33;
+
+  <bb 8>:
+  D.3092 = (long int) i;
+  ff.37 = ff;
+  if (D.3092 < ff.37)
+    goto <bb 7>;
+  else
+    goto <bb 9>;
+
+  <bb 7>:
+  h_c.34 = h_c;
+  D.3095 = (long unsigned int) i;
+  D.3096 = D.3095 * 4;
+  D.3097 = h_c.34 + D.3096;
+  h_a.35 = h_a;
+  D.3099 = (long unsigned int) i;
+  D.3100 = D.3099 * 4;
+  D.3101 = h_a.35 + D.3100;
+  D.3102 = *D.3101;
+  h_b.36 = h_b;
+  D.3104 = (long unsigned int) i;
+  D.3105 = D.3104 * 4;
+  D.3106 = h_b.36 + D.3105;
+  D.3107 = *D.3106;
+  D.3108 = D.3102 + D.3107;
+  *D.3097 = D.3108;
+  i = i + 1;
+  goto <bb 8>;
+
+}
+
+

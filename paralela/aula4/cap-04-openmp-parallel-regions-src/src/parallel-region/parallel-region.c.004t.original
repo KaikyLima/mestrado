@@ -1,0 +1,16 @@
+
+;; Function main (null)
+;; enabled by -tree-original
+
+
+{
+  #pragma omp parallel
+    {
+      {
+        
+      }
+    }
+  return 0;
+}
+return 0;
+

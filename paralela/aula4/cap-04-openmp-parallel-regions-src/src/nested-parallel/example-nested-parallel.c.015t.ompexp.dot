@@ -1,0 +1,186 @@
+digraph "example-nested-parallel.c.015t.ompexp" {
+overlap=false;
+subgraph "main" {
+	color="black";
+	label="main";
+	fn_0_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_0_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|omp_set_nested\ (1);\l\
+|omp_set_dynamic\ (0);\l\
+|__builtin_GOMP_parallel_start\ (main._omp_fn.0,\ 0B,\ 3);\l\
+|main._omp_fn.0\ (0B);\l\
+|__builtin_GOMP_parallel_end\ ();\l\
+|D.2261\ =\ 0;\l\
+}"];
+
+	fn_0_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+|\<L6\>:\l\
+|return\ D.2261;\l\
+}"];
+
+	fn_0_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_0_basic_block_0:s -> fn_0_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_0_basic_block_2:s -> fn_0_basic_block_3:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_0_basic_block_3:s -> fn_0_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_0_basic_block_0:s -> fn_0_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "main._omp_fn.2" {
+	color="black";
+	label="main._omp_fn.2";
+	fn_3_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3_basic_block_22 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 22\>:\l\
+}"];
+
+	fn_3_basic_block_10 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 10\>:\l\
+}"];
+
+	fn_3_basic_block_11 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 11\>:\l\
+|D.2287\ =\ __builtin_GOMP_single_start\ ();\l\
+|if\ (D.2287\ ==\ 1)\l\
+\ \ goto\ \<bb\ 12\>;\l\
+else\l\
+\ \ goto\ \<bb\ 13\>;\l\
+}"];
+
+	fn_3_basic_block_12 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 12\>:\l\
+|D.2288\ =\ omp_get_num_threads\ ();\l\
+|printf\ (\"Inner:\ num_thds=%d\n\",\ D.2288);\l\
+goto\ \<bb\ 13\>;\l\
+}"];
+
+	fn_3_basic_block_13 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 13\>:\l\
+}"];
+
+	fn_3_basic_block_14 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 14\>:\l\
+|return;\l\
+}"];
+
+	fn_3_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3_basic_block_0:s -> fn_3_basic_block_22:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3_basic_block_22:s -> fn_3_basic_block_10:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3_basic_block_10:s -> fn_3_basic_block_11:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3_basic_block_11:s -> fn_3_basic_block_12:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3_basic_block_11:s -> fn_3_basic_block_13:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3_basic_block_13:s -> fn_3_basic_block_14:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3_basic_block_14:s -> fn_3_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3_basic_block_12:s -> fn_3_basic_block_13:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3_basic_block_0:s -> fn_3_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "main._omp_fn.1" {
+	color="black";
+	label="main._omp_fn.1";
+	fn_2_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_2_basic_block_24 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 24\>:\l\
+}"];
+
+	fn_2_basic_block_4 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 4\>:\l\
+}"];
+
+	fn_2_basic_block_5 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 5\>:\l\
+|D.2289\ =\ __builtin_GOMP_single_start\ ();\l\
+|if\ (D.2289\ ==\ 1)\l\
+\ \ goto\ \<bb\ 6\>;\l\
+else\l\
+\ \ goto\ \<bb\ 7\>;\l\
+}"];
+
+	fn_2_basic_block_6 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 6\>:\l\
+|D.2290\ =\ omp_get_num_threads\ ();\l\
+|printf\ (\"Inner:\ num_thds=%d\n\",\ D.2290);\l\
+goto\ \<bb\ 7\>;\l\
+}"];
+
+	fn_2_basic_block_7 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 7\>:\l\
+}"];
+
+	fn_2_basic_block_8 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 8\>:\l\
+|return;\l\
+}"];
+
+	fn_2_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_2_basic_block_0:s -> fn_2_basic_block_24:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_2_basic_block_24:s -> fn_2_basic_block_4:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_2_basic_block_4:s -> fn_2_basic_block_5:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_2_basic_block_5:s -> fn_2_basic_block_6:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_2_basic_block_5:s -> fn_2_basic_block_7:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_2_basic_block_7:s -> fn_2_basic_block_8:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_2_basic_block_8:s -> fn_2_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_2_basic_block_6:s -> fn_2_basic_block_7:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_2_basic_block_0:s -> fn_2_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "main._omp_fn.0" {
+	color="black";
+	label="main._omp_fn.0";
+	fn_1_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_1_basic_block_26 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 26\>:\l\
+}"];
+
+	fn_1_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+}"];
+
+	fn_1_basic_block_25 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 25\>:\l\
+|__builtin_GOMP_parallel_start\ (main._omp_fn.1,\ 0B,\ 3);\l\
+|main._omp_fn.1\ (0B);\l\
+|__builtin_GOMP_parallel_end\ ();\l\
+}"];
+
+	fn_1_basic_block_9 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 9\>:\l\
+|__builtin_GOMP_barrier\ ();\l\
+|omp_set_nested\ (0);\l\
+}"];
+
+	fn_1_basic_block_23 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 23\>:\l\
+|__builtin_GOMP_parallel_start\ (main._omp_fn.2,\ 0B,\ 0);\l\
+|main._omp_fn.2\ (0B);\l\
+|__builtin_GOMP_parallel_end\ ();\l\
+}"];
+
+	fn_1_basic_block_15 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 15\>:\l\
+|__builtin_GOMP_barrier\ ();\l\
+}"];
+
+	fn_1_basic_block_16 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 16\>:\l\
+|D.2291\ =\ __builtin_GOMP_single_start\ ();\l\
+|if\ (D.2291\ ==\ 1)\l\
+\ \ goto\ \<bb\ 17\>;\l\
+else\l\
+\ \ goto\ \<bb\ 18\>;\l\
+}"];
+
+	fn_1_basic_block_17 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 17\>:\l\
+|D.2292\ =\ omp_get_num_threads\ ();\l\
+|printf\ (\"Outer:\ num_thds=%d\n\",\ D.2292);\l\
+goto\ \<bb\ 18\>;\l\
+}"];
+
+	fn_1_basic_block_18 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 18\>:\l\
+}"];
+
+	fn_1_basic_block_19 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 19\>:\l\
+|return;\l\
+}"];
+
+	fn_1_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_1_basic_block_0:s -> fn_1_basic_block_26:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_1_basic_block_26:s -> fn_1_basic_block_3:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_1_basic_block_3:s -> fn_1_basic_block_25:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_1_basic_block_25:s -> fn_1_basic_block_9:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_1_basic_block_9:s -> fn_1_basic_block_23:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_1_basic_block_23:s -> fn_1_basic_block_15:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_1_basic_block_15:s -> fn_1_basic_block_16:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_1_basic_block_16:s -> fn_1_basic_block_17:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_1_basic_block_16:s -> fn_1_basic_block_18:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_1_basic_block_18:s -> fn_1_basic_block_19:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_1_basic_block_19:s -> fn_1_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_1_basic_block_17:s -> fn_1_basic_block_18:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_1_basic_block_0:s -> fn_1_basic_block_1:n [style="invis",constraint=true];
+}
+}
