@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <pthread.h>
 #ifdef _OPENMP
 #include <omp.h>
 #else
@@ -10,7 +10,7 @@
   (system("cat /proc/cpuinfo | grep 'processor' | wc -l"))
 #endif
 
-// Entrada e saída.
+// Entrada e saï¿½da.
 float *h_a;
 float *h_b;
 float *h_c;
@@ -79,15 +79,15 @@ int main(int argc, char *argv[]) {
     ii = id * partition;
     ff = ii + partition; // ff = (ii + 1) * partition;
 
-    printf("  Thread[%lu]: Particao prevista: %d [%d..%d]: %d.\n", (long int) pthread_self(), id, ii, ff,  (ff - ii));
+    printf("  Thread[%lu]: Particao prevista: %ld [%ld..%ld]: %ld.\n", (long int) pthread_self(), id, ii, ff,  (ff - ii));
 
-    /* A sobra n - ff sempre será maior que uma particao até a penúltima thread. Na última thread se sobrar algumas iterações
-    no final, a última thread assume estendendo seu ff para n. */ 
+    /* A sobra n - ff sempre serï¿½ maior que uma particao atï¿½ a penï¿½ltima thread. Na ï¿½ltima thread se sobrar algumas iteraï¿½ï¿½es
+    no final, a ï¿½ltima thread assume estendendo seu ff para n. */ 
     if((n - ff) < partition){
       ff = n;
     }
 
-    printf("  Thread[%lu]: Executando sobre particao: %d [%d..%d]: %d.\n", (long int) pthread_self(), id, ii, ff, (ff - ii));
+    printf("  Thread[%lu]: Executando sobre particao: %ld [%ld..%ld]: %ld.\n", (long int) pthread_self(), id, ii, ff, (ff - ii));
   
     for (i = ii; i < ff; i++) {
       h_c[i] = h_a[i] + h_b[i];

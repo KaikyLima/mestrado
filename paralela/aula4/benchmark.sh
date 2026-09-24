@@ -8,8 +8,8 @@
 #
 # Exemplos:
 #   ./benchmark.sh 10 ./src/vectoradd/vectoradd.exe
-#   ./benchmark.sh 10 ./src/vectoradd-omp-distribuicao-estatica/vectoradd-omp-static.exe 1048576 4
-#   ./benchmark.sh 10 ./src/vectoradd-omp-distribuicao-dinamica/vectoradd-omp-dynamic.exe 1048576 4 50000
+#   ./benchmark.sh 10 ./src/vectoradd-omp-distribuicao-estatica/vectoradd-omp-static.exe 100000000 12
+#   ./benchmark.sh 10 ./src/vectoradd-omp-distribuicao-dinamica/vectoradd-omp-dynamic.exe 100000000 12 10000
 #
 # Opcional: para salvar os tempos de cada execução em CSV, defina a variável CSV_OUT:
 #   CSV_OUT=resultado.csv ./benchmark.sh 10 ./meu-exe arg1 arg2
