@@ -1,0 +1,51 @@
+
+;; Function main (main, funcdef_no=2, decl_uid=2764, cgraph_uid=2)
+
+
+OMP region tree
+
+bb 2: gimple_omp_parallel
+bb 3: GIMPLE_OMP_RETURN
+
+Merging blocks 2 and 7
+Merging blocks 2 and 4
+main ()
+{
+  long int id_sys;
+  int id_omp;
+  int D.2772;
+
+  <bb 2>:
+  omp_set_num_threads (7);
+  __builtin_GOMP_parallel_start (main._omp_fn.0, 0B, 0);
+  main._omp_fn.0 (0B);
+  __builtin_GOMP_parallel_end ();
+  D.2772 = 0;
+
+<L0>:
+  return D.2772;
+
+}
+
+
+
+;; Function main._omp_fn.0 (main._omp_fn.0, funcdef_no=3, decl_uid=2774, cgraph_uid=4)
+
+main._omp_fn.0 (void * .omp_data_i)
+{
+  long int id_sys;
+  int D.2779;
+  int id_omp;
+
+  <bb 6>:
+
+  <bb 3>:
+  id_omp = omp_get_thread_num ();
+  D.2779 = pthread_self ();
+  id_sys = (long int) D.2779;
+  printf ("Thread[%d, %lu]: Hello World!!!\n", id_omp, id_sys);
+  return;
+
+}
+
+
