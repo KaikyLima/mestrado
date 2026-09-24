@@ -1,0 +1,155 @@
+
+;; Function main (main, funcdef_no=0, decl_uid=2255, cgraph_uid=0)
+
+
+OMP region tree
+
+bb 2: gimple_omp_parallel
+    bb 15: gimple_omp_single
+    bb 18: GIMPLE_OMP_RETURN
+    bb 9: gimple_omp_parallel
+        bb 10: gimple_omp_single
+        bb 13: GIMPLE_OMP_RETURN
+    bb 14: GIMPLE_OMP_RETURN
+    bb 3: gimple_omp_parallel
+        bb 4: gimple_omp_single
+        bb 7: GIMPLE_OMP_RETURN
+    bb 8: GIMPLE_OMP_RETURN
+bb 19: GIMPLE_OMP_RETURN
+
+Merging blocks 2 and 27
+Merging blocks 2 and 20
+main ()
+{
+  _Bool D.2285;
+  _Bool D.2282;
+  _Bool D.2279;
+  int D.2261;
+
+  <bb 2>:
+  omp_set_nested (1);
+  omp_set_dynamic (0);
+  __builtin_GOMP_parallel_start (main._omp_fn.0, 0B, 3);
+  main._omp_fn.0 (0B);
+  __builtin_GOMP_parallel_end ();
+  D.2261 = 0;
+
+<L6>:
+  return D.2261;
+
+}
+
+
+
+;; Function main._omp_fn.2 (main._omp_fn.2, funcdef_no=3, decl_uid=2272, cgraph_uid=9)
+
+main._omp_fn.2 (void * .omp_data_i)
+{
+  int D.2288;
+  _Bool D.2287;
+
+  <bb 22>:
+
+  <bb 10>:
+
+  <bb 11>:
+  D.2287 = __builtin_GOMP_single_start ();
+  if (D.2287 == 1)
+    goto <bb 12>;
+  else
+    goto <bb 13>;
+
+  <bb 13>:
+
+  <bb 14>:
+  return;
+
+  <bb 12>:
+  D.2288 = omp_get_num_threads ();
+  printf ("Inner: num_thds=%d\n", D.2288);
+  goto <bb 13>;
+
+}
+
+
+
+;; Function main._omp_fn.1 (main._omp_fn.1, funcdef_no=2, decl_uid=2267, cgraph_uid=4)
+
+main._omp_fn.1 (void * .omp_data_i)
+{
+  int D.2290;
+  _Bool D.2289;
+
+  <bb 24>:
+
+  <bb 4>:
+
+  <bb 5>:
+  D.2289 = __builtin_GOMP_single_start ();
+  if (D.2289 == 1)
+    goto <bb 6>;
+  else
+    goto <bb 7>;
+
+  <bb 7>:
+
+  <bb 8>:
+  return;
+
+  <bb 6>:
+  D.2290 = omp_get_num_threads ();
+  printf ("Inner: num_thds=%d\n", D.2290);
+  goto <bb 7>;
+
+}
+
+
+
+;; Function main._omp_fn.0 (main._omp_fn.0, funcdef_no=1, decl_uid=2263, cgraph_uid=3)
+
+main._omp_fn.0 (void * .omp_data_i)
+{
+  int D.2292;
+  _Bool D.2291;
+
+  <bb 26>:
+
+  <bb 3>:
+
+  <bb 25>:
+  __builtin_GOMP_parallel_start (main._omp_fn.1, 0B, 3);
+  main._omp_fn.1 (0B);
+  __builtin_GOMP_parallel_end ();
+
+  <bb 9>:
+  __builtin_GOMP_barrier ();
+  omp_set_nested (0);
+
+  <bb 23>:
+  __builtin_GOMP_parallel_start (main._omp_fn.2, 0B, 0);
+  main._omp_fn.2 (0B);
+  __builtin_GOMP_parallel_end ();
+
+  <bb 15>:
+  __builtin_GOMP_barrier ();
+
+  <bb 16>:
+  D.2291 = __builtin_GOMP_single_start ();
+  if (D.2291 == 1)
+    goto <bb 17>;
+  else
+    goto <bb 18>;
+
+  <bb 18>:
+
+  <bb 19>:
+  return;
+
+  <bb 17>:
+  D.2292 = omp_get_num_threads ();
+  printf ("Outer: num_thds=%d\n", D.2292);
+  goto <bb 18>;
+
+}
+
+
