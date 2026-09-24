@@ -3,6 +3,7 @@
 #include <semaphore.h>
 #include <inttypes.h>
 #include <stdbool.h>
+#include <pthread.h>
 
 #ifdef _OPENMP
 #include <omp.h>
@@ -128,7 +129,7 @@ int main(int argc, char *argv[]) {
     bool has_work = false;
 
     while ((has_work = get_next_loop_partition(&ii, &ff)) != false){
-      fprintf(stdout, "   Thread[%lu,%lu]: Working on partition: [%d..%d]: %d.\n", id, (long int) pthread_self(), ii, ff, (ff - ii));
+      fprintf(stdout, "   Thread[%ld,%lu]: Working on partition: [%ld..%ld]: %ld.\n", id, (long int) pthread_self(), ii, ff, (ff - ii));
       for (i = ii; i < ff; i++) {
         h_c[i] = h_a[i] + h_b[i];
       }  
