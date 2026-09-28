@@ -90,6 +90,7 @@ int main(int argc, char *argv[]) {
     printf("  Thread[%lu]: Executando sobre particao: %ld [%ld..%ld]: %ld.\n", (long int) pthread_self(), id, ii, ff, (ff - ii));
   
     for (i = ii; i < ff; i++) {
+      #pragma omp atomic write
       h_c[i] = h_a[i] + h_b[i];
     }
 

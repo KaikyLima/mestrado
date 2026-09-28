@@ -89,8 +89,11 @@ int main(int argc, char *argv[]) {
 
     printf("  Thread[%lu]: Executando sobre particao: %ld [%ld..%ld]: %ld.\n", (long int) pthread_self(), id, ii, ff, (ff - ii));
   
-    for (i = ii; i < ff; i++) {
-      h_c[i] = h_a[i] + h_b[i];
+    #pragma omp single
+    {
+      for (i = 0; i < n; i++) {
+        h_c[i] = h_a[i] + h_b[i];
+      }
     }
 
     printf("  Thread[%lu]: Terminando...\n", (long int) pthread_self());
