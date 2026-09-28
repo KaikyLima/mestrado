@@ -1,0 +1,111 @@
+
+;; Function main (main, funcdef_no=2, decl_uid=2764, cgraph_uid=2)
+
+
+OMP region tree
+
+bb 2: gimple_omp_parallel
+    bb 3: gimple_omp_critical
+    bb 4: GIMPLE_OMP_RETURN
+bb 5: GIMPLE_OMP_RETURN
+
+Merging blocks 2 and 9
+Merging blocks 2 and 6
+main ()
+{
+  int n;
+  int id;
+  int D.2787;
+  long int D.2786;
+  int D.2785;
+  int D.2784;
+  long int D.2783;
+  int D.2782;
+  int D.2773;
+  long int D.2772;
+  int D.2771;
+  struct .omp_data_s.0 .omp_data_o.1;
+  int D.2798;
+  int D.2796;
+  int D.2797;
+  int D.2795;
+
+  <bb 2>:
+  n = 0;
+  D.2771 = pthread_self ();
+  D.2772 = (long int) D.2771;
+  D.2773 = omp_get_thread_num ();
+  printf ("Thread[%d][%lu]: Before parallel region...\n", D.2773, D.2772);
+  .omp_data_o.1.n = n;
+  __builtin_GOMP_parallel_start (main._omp_fn.0, &.omp_data_o.1, 4);
+  main._omp_fn.0 (&.omp_data_o.1);
+  __builtin_GOMP_parallel_end ();
+  n = .omp_data_o.1.n;
+  D.2782 = pthread_self ();
+  D.2783 = (long int) D.2782;
+  D.2784 = omp_get_thread_num ();
+  printf ("Thread[%d][%lu]: After parallel region...\n", D.2784, D.2783);
+  D.2785 = pthread_self ();
+  D.2786 = (long int) D.2785;
+  printf ("Thread[%d][%lu]: After... n: %d\n", id, D.2786, n);
+  D.2787 = 0;
+
+<L0>:
+  return D.2787;
+
+}
+
+
+
+;; Function main._omp_fn.0 (main._omp_fn.0, funcdef_no=3, decl_uid=2789, cgraph_uid=6)
+
+main._omp_fn.0 (struct .omp_data_s.0 * .omp_data_i)
+{
+  int n [value-expr: .omp_data_i->n];
+  long int D.2813;
+  int D.2812;
+  long int D.2811;
+  int D.2810;
+  int D.2809;
+  long int D.2808;
+  int D.2807;
+  int D.2806;
+  int D.2805;
+  int D.2804;
+  long int D.2803;
+  int D.2802;
+  int id;
+
+  <bb 8>:
+
+  <bb 3>:
+  id = omp_get_thread_num ();
+
+  <bb 4>:
+  __builtin_GOMP_critical_start ();
+  D.2802 = pthread_self ();
+  D.2803 = (long int) D.2802;
+  D.2804 = .omp_data_i->n;
+  printf ("Thread[%d][%lu]: Before... n: %d\n", id, D.2803, D.2804);
+  D.2805 = .omp_data_i->n;
+  D.2806 = D.2805 + id;
+  .omp_data_i->n = D.2806;
+  D.2807 = pthread_self ();
+  D.2808 = (long int) D.2807;
+  D.2809 = .omp_data_i->n;
+  printf ("Thread[%d][%lu]: After... n: %d\n", id, D.2808, D.2809);
+  __builtin_GOMP_critical_end ();
+
+  <bb 5>:
+  D.2810 = pthread_self ();
+  D.2811 = (long int) D.2810;
+  printf ("Thread[%d][%lu]: Before barrier...\n", id, D.2811);
+  __builtin_GOMP_barrier ();
+  D.2812 = pthread_self ();
+  D.2813 = (long int) D.2812;
+  printf ("Thread[%d][%lu]: After barrier...\n", id, D.2813);
+  return;
+
+}
+
+

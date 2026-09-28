@@ -1,0 +1,43 @@
+digraph "example-atomic-directive.c.015t.ompexp" {
+overlap=false;
+subgraph "cluster_main" {
+	style="dashed";
+	color="black";
+	label="main ()";
+	fn_6_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_6_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_6_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|n\ =\ 0;\l\
+|_1\ =\ pthread_self\ ();\l\
+|_2\ =\ (long\ int)\ _1;\l\
+|_3\ =\ omp_get_thread_num\ ();\l\
+|printf\ (\"Thread[%d][%lu]:\ Before\ parallel\ region...\\n\",\ _3,\ _2);\l\
+|.omp_data_o.4.n\ =\ &n;\l\
+|__builtin_GOMP_parallel\ (main._omp_fn.0,\ &.omp_data_o.4,\ 4,\ 0);\l\
+|.omp_data_o.4\ =\ \{CLOBBER\};\l\
+|_4\ =\ pthread_self\ ();\l\
+|_5\ =\ (long\ int)\ _4;\l\
+|_6\ =\ omp_get_thread_num\ ();\l\
+|printf\ (\"Thread[%d][%lu]:\ After\ parallel\ region...\\n\",\ _6,\ _5);\l\
+|n.2_7\ =\ n;\l\
+|_8\ =\ pthread_self\ ();\l\
+|_9\ =\ (long\ int)\ _8;\l\
+|_10\ =\ omp_get_thread_num\ ();\l\
+|printf\ (\"Thread[%d][%lu]:\ Final....\ n:\ %d\\n\",\ _10,\ _9,\ n.2_7);\l\
+|D.4748\ =\ 0;\l\
+|n\ =\ \{CLOBBER\};\l\
+}"];
+
+	fn_6_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+|\<L1\>:\l\
+|return\ D.4748;\l\
+}"];
+
+	fn_6_basic_block_0:s -> fn_6_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_6_basic_block_2:s -> fn_6_basic_block_3:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_6_basic_block_3:s -> fn_6_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_6_basic_block_0:s -> fn_6_basic_block_1:n [style="invis",constraint=true];
+}
+}

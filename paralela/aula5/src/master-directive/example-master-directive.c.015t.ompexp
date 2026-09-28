@@ -1,0 +1,109 @@
+
+;; Function main (main, funcdef_no=2, decl_uid=2764, cgraph_uid=2)
+
+
+OMP region tree
+
+bb 2: gimple_omp_parallel
+    bb 7: gimple_omp_master
+    bb 10: GIMPLE_OMP_RETURN
+    bb 3: gimple_omp_master
+    bb 6: GIMPLE_OMP_RETURN
+bb 11: GIMPLE_OMP_RETURN
+
+Merging blocks 2 and 15
+Merging blocks 2 and 12
+main ()
+{
+  int D.2792;
+  int D.2789;
+  int id;
+  int D.2782;
+  int D.2781;
+  long int D.2780;
+  int D.2779;
+  int D.2772;
+  long int D.2771;
+  int D.2770;
+
+  <bb 2>:
+  D.2770 = pthread_self ();
+  D.2771 = (long int) D.2770;
+  D.2772 = omp_get_thread_num ();
+  printf ("Thread[%d][%lu]: Before parallel region...\n", D.2772, D.2771);
+  __builtin_GOMP_parallel_start (main._omp_fn.0, 0B, 4);
+  main._omp_fn.0 (0B);
+  __builtin_GOMP_parallel_end ();
+  D.2779 = pthread_self ();
+  D.2780 = (long int) D.2779;
+  D.2781 = omp_get_thread_num ();
+  printf ("Thread[%d][%lu]: After parallel region...\n", D.2781, D.2780);
+  D.2782 = 0;
+
+<L4>:
+  return D.2782;
+
+}
+
+
+
+;; Function main._omp_fn.0 (main._omp_fn.0, funcdef_no=3, decl_uid=2784, cgraph_uid=6)
+
+main._omp_fn.0 (void * .omp_data_i)
+{
+  long int D.2803;
+  int D.2802;
+  long int D.2801;
+  int D.2800;
+  int D.2799;
+  long int D.2798;
+  int D.2797;
+  int D.2796;
+  int id;
+
+  <bb 14>:
+
+  <bb 3>:
+  id = omp_get_thread_num ();
+
+  <bb 4>:
+  D.2796 = __builtin_omp_get_thread_num ();
+  if (D.2796 == 0)
+    goto <bb 5>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+
+  <bb 7>:
+  D.2797 = pthread_self ();
+  D.2798 = (long int) D.2797;
+  printf ("Thread[%d][%lu]: Working...\n", id, D.2798);
+
+  <bb 8>:
+  D.2799 = __builtin_omp_get_thread_num ();
+  if (D.2799 == 0)
+    goto <bb 9>;
+  else
+    goto <bb 10>;
+
+  <bb 10>:
+
+  <bb 11>:
+  return;
+
+  <bb 9>:
+  D.2800 = pthread_self ();
+  D.2801 = (long int) D.2800;
+  printf ("Thread[%d][%lu]: Ending the Parallel Region Execution...\n", id, D.2801);
+  goto <bb 10>;
+
+  <bb 5>:
+  D.2802 = pthread_self ();
+  D.2803 = (long int) D.2802;
+  printf ("Thread[%d][%lu]: Starting the Execution...\n", id, D.2803);
+  goto <bb 6>;
+
+}
+
+

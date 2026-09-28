@@ -1,0 +1,112 @@
+
+;; Function main (main, funcdef_no=2, decl_uid=2764, cgraph_uid=2)
+
+
+OMP region tree
+
+bb 2: gimple_omp_parallel
+    bb 7: gimple_omp_single
+    bb 10: GIMPLE_OMP_RETURN
+    bb 3: gimple_omp_single
+    bb 6: GIMPLE_OMP_RETURN
+bb 11: GIMPLE_OMP_RETURN
+
+Merging blocks 2 and 15
+Merging blocks 2 and 12
+main ()
+{
+  _Bool D.2796;
+  _Bool D.2793;
+  int n;
+  int id;
+  int D.2783;
+  int D.2782;
+  long int D.2781;
+  int D.2780;
+  int D.2773;
+  long int D.2772;
+  int D.2771;
+
+  <bb 2>:
+  n = 0;
+  D.2771 = pthread_self ();
+  D.2772 = (long int) D.2771;
+  D.2773 = omp_get_thread_num ();
+  printf ("Thread[%d][%lu]: Before parallel region...\n", D.2773, D.2772);
+  __builtin_GOMP_parallel_start (main._omp_fn.0, 0B, 4);
+  main._omp_fn.0 (0B);
+  __builtin_GOMP_parallel_end ();
+  D.2780 = pthread_self ();
+  D.2781 = (long int) D.2780;
+  D.2782 = omp_get_thread_num ();
+  printf ("Thread[%d][%lu]: After parallel region...\n", D.2782, D.2781);
+  D.2783 = 0;
+
+<L4>:
+  return D.2783;
+
+}
+
+
+
+;; Function main._omp_fn.0 (main._omp_fn.0, funcdef_no=3, decl_uid=2785, cgraph_uid=6)
+
+main._omp_fn.0 (void * .omp_data_i)
+{
+  long int D.2806;
+  int D.2805;
+  long int D.2804;
+  int D.2803;
+  _Bool D.2802;
+  long int D.2801;
+  int D.2800;
+  _Bool D.2799;
+  int id;
+
+  <bb 14>:
+
+  <bb 3>:
+  id = omp_get_thread_num ();
+
+  <bb 4>:
+  D.2799 = __builtin_GOMP_single_start ();
+  if (D.2799 == 1)
+    goto <bb 5>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  __builtin_GOMP_barrier ();
+
+  <bb 7>:
+  D.2800 = pthread_self ();
+  D.2801 = (long int) D.2800;
+  printf ("Thread[%d][%lu]: Working...\n", id, D.2801);
+
+  <bb 8>:
+  D.2802 = __builtin_GOMP_single_start ();
+  if (D.2802 == 1)
+    goto <bb 9>;
+  else
+    goto <bb 10>;
+
+  <bb 10>:
+
+  <bb 11>:
+  return;
+
+  <bb 9>:
+  D.2803 = pthread_self ();
+  D.2804 = (long int) D.2803;
+  printf ("Thread[%d][%lu]: Ending the Parallel Region Execution...\n", id, D.2804);
+  goto <bb 10>;
+
+  <bb 5>:
+  D.2805 = pthread_self ();
+  D.2806 = (long int) D.2805;
+  printf ("Thread[%d][%lu]: Starting the Execution...\n", id, D.2806);
+  goto <bb 6>;
+
+}
+
+

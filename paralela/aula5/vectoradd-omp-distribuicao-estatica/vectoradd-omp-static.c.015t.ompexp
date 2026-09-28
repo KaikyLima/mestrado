@@ -1,0 +1,365 @@
+
+;; Function init_array (init_array, funcdef_no=2, decl_uid=2770, cgraph_uid=2)
+
+init_array (int n)
+{
+  int i;
+  float * D.2816;
+  long unsigned int D.2815;
+  long unsigned int D.2814;
+  float * h_b.2;
+  float * D.2812;
+  long unsigned int D.2811;
+  long unsigned int D.2810;
+  float * h_a.1;
+  struct _IO_FILE * stdout.0;
+
+  <bb 2>:
+  stdout.0 = stdout;
+  __builtin_fwrite ("Inicializando os arrays.\n", 1, 25, stdout.0);
+  i = 0;
+  goto <bb 4>;
+
+  <bb 3>:
+  h_a.1 = h_a;
+  D.2810 = (long unsigned int) i;
+  D.2811 = D.2810 * 4;
+  D.2812 = h_a.1 + D.2811;
+  *D.2812 = 5.0e-1;
+  h_b.2 = h_b;
+  D.2814 = (long unsigned int) i;
+  D.2815 = D.2814 * 4;
+  D.2816 = h_b.2 + D.2815;
+  *D.2816 = 5.0e-1;
+  i = i + 1;
+
+  <bb 4>:
+  if (i < n)
+    goto <bb 3>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  return;
+
+}
+
+
+
+;; Function print_array (print_array, funcdef_no=3, decl_uid=2777, cgraph_uid=3)
+
+print_array (int n)
+{
+  int i;
+  struct _IO_FILE * stdout.4;
+  double D.2822;
+  float D.2821;
+  float * D.2820;
+  long unsigned int D.2819;
+  long unsigned int D.2818;
+  float * h_c.3;
+
+  <bb 2>:
+  i = 0;
+  goto <bb 4>;
+
+  <bb 3>:
+  h_c.3 = h_c;
+  D.2818 = (long unsigned int) i;
+  D.2819 = D.2818 * 4;
+  D.2820 = h_c.3 + D.2819;
+  D.2821 = *D.2820;
+  D.2822 = (double) D.2821;
+  stdout.4 = stdout;
+  fprintf (stdout.4, "h_c[%07d]: %f\n", i, D.2822);
+  i = i + 1;
+
+  <bb 4>:
+  if (i < n)
+    goto <bb 3>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  return;
+
+}
+
+
+
+;; Function check_result (check_result, funcdef_no=4, decl_uid=2784, cgraph_uid=4)
+
+check_result (int n)
+{
+  float sum;
+  int i;
+  struct _IO_FILE * stdout.7;
+  double D.2833;
+  double D.2832;
+  float D.2831;
+  float D.2830;
+  float D.2829;
+  float * D.2828;
+  long unsigned int D.2827;
+  long unsigned int D.2826;
+  float * h_c.6;
+  struct _IO_FILE * stdout.5;
+
+  <bb 2>:
+  sum = 0.0;
+  stdout.5 = stdout;
+  __builtin_fwrite ("Verificando o resultado.\n", 1, 25, stdout.5);
+  i = 0;
+  goto <bb 4>;
+
+  <bb 3>:
+  h_c.6 = h_c;
+  D.2826 = (long unsigned int) i;
+  D.2827 = D.2826 * 4;
+  D.2828 = h_c.6 + D.2827;
+  D.2829 = *D.2828;
+  sum = D.2829 + sum;
+  i = i + 1;
+
+  <bb 4>:
+  if (i < n)
+    goto <bb 3>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  D.2830 = (float) n;
+  D.2831 = sum / D.2830;
+  D.2832 = (double) D.2831;
+  D.2833 = (double) sum;
+  stdout.7 = stdout;
+  fprintf (stdout.7, "Resultado Final: (%f, %f)\n", D.2833, D.2832);
+  return;
+
+}
+
+
+
+;; Function main (main, funcdef_no=5, decl_uid=2793, cgraph_uid=5)
+
+
+OMP region tree
+
+bb 4: gimple_omp_parallel
+bb 10: GIMPLE_OMP_RETURN
+
+Merging blocks 4 and 14
+Merging blocks 4 and 11
+main (int argc, char * * argv)
+{
+  unsigned int num_threads.21;
+  long int ff;
+  long int ii;
+  long int id;
+  int num_threads;
+  int num_elementos;
+  int i;
+  int D.2897;
+  long int D.2896;
+  int D.2895;
+  long int D.2894;
+  int D.2893;
+  long int D.2892;
+  int D.2891;
+  long int D.2890;
+  int D.2889;
+  void * h_c.11;
+  long unsigned int D.2850;
+  long unsigned int D.2849;
+  void * h_b.10;
+  long unsigned int D.2847;
+  long unsigned int D.2846;
+  void * h_a.9;
+  long unsigned int D.2844;
+  long unsigned int D.2843;
+  int partition.8;
+  char * D.2841;
+  char * * D.2840;
+  char * D.2839;
+  char * * D.2838;
+  char * D.2837;
+
+  <bb 2>:
+  num_threads = 0;
+  if (argc <= 2)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  D.2837 = *argv;
+  printf ("Uso: %s <size> <numthreads>\n", D.2837);
+  exit (0);
+
+  <bb 4>:
+  D.2838 = argv + 8;
+  D.2839 = *D.2838;
+  num_elementos = atoi (D.2839);
+  D.2840 = argv + 16;
+  D.2841 = *D.2840;
+  num_threads = atoi (D.2841);
+  partition.8 = num_elementos / num_threads;
+  partition = partition.8;
+  n = num_elementos;
+  printf ("num_elementos: %d num_threads: %d\n", num_elementos, num_threads);
+  D.2843 = (long unsigned int) num_elementos;
+  D.2844 = D.2843 * 4;
+  h_a.9 = malloc (D.2844);
+  h_a = h_a.9;
+  D.2846 = (long unsigned int) num_elementos;
+  D.2847 = D.2846 * 4;
+  h_b.10 = malloc (D.2847);
+  h_b = h_b.10;
+  D.2849 = (long unsigned int) num_elementos;
+  D.2850 = D.2849 * 4;
+  h_c.11 = malloc (D.2850);
+  h_c = h_c.11;
+  init_array (num_elementos);
+  num_threads.21 = (unsigned int) num_threads;
+  __builtin_GOMP_parallel_start (main._omp_fn.0, 0B, num_threads.21);
+  main._omp_fn.0 (0B);
+  __builtin_GOMP_parallel_end ();
+  D.2889 = pthread_self ();
+  D.2890 = (long int) D.2889;
+  printf ("Thread[%lu]: Todas as threads terminaram...\n", D.2890);
+  D.2891 = pthread_self ();
+  D.2892 = (long int) D.2891;
+  printf ("Thread[%lu]: Imprimindo o resultado.\n", D.2892);
+  D.2893 = pthread_self ();
+  D.2894 = (long int) D.2893;
+  printf ("Thread[%lu]: Verificando o resultado.\n", D.2894);
+  check_result (num_elementos);
+  D.2895 = pthread_self ();
+  D.2896 = (long int) D.2895;
+  printf ("Thread[%lu]: Fui, Tchau!\n", D.2896);
+  D.2897 = 0;
+
+<L7>:
+  return D.2897;
+
+}
+
+
+
+;; Function main._omp_fn.0 (main._omp_fn.0, funcdef_no=6, decl_uid=2899, cgraph_uid=12)
+
+main._omp_fn.0 (void * .omp_data_i)
+{
+  int n.16;
+  float D.2952;
+  float D.2951;
+  float * D.2950;
+  long unsigned int D.2949;
+  long unsigned int D.2948;
+  float * h_b.19;
+  float D.2946;
+  float * D.2945;
+  long unsigned int D.2944;
+  long unsigned int D.2943;
+  float * h_a.18;
+  float * D.2941;
+  long unsigned int D.2940;
+  long unsigned int D.2939;
+  float * h_c.17;
+  long int D.2937;
+  int D.2936;
+  long int D.2935;
+  int i;
+  long int D.2933;
+  int D.2932;
+  long int D.2931;
+  long int D.2930;
+  int partition.15;
+  long int D.2928;
+  long int D.2927;
+  int n.14;
+  long int D.2925;
+  int D.2924;
+  long int D.2923;
+  long int ff;
+  long int D.2921;
+  int partition.13;
+  long int ii;
+  long int D.2918;
+  int partition.12;
+  long int id;
+  int D.2915;
+
+  <bb 13>:
+
+  <bb 5>:
+  D.2915 = omp_get_thread_num ();
+  id = (long int) D.2915;
+  partition.12 = partition;
+  D.2918 = (long int) partition.12;
+  ii = D.2918 * id;
+  partition.13 = partition;
+  D.2921 = (long int) partition.13;
+  ff = D.2921 + ii;
+  D.2923 = ff - ii;
+  D.2924 = pthread_self ();
+  D.2925 = (long int) D.2924;
+  printf ("  Thread[%lu]: Particao prevista: %d [%d..%d]: %d.\n", D.2925, id, ii, ff, D.2923);
+  n.14 = n;
+  D.2927 = (long int) n.14;
+  D.2928 = D.2927 - ff;
+  partition.15 = partition;
+  D.2930 = (long int) partition.15;
+  if (D.2928 < D.2930)
+    goto <bb 6>;
+  else
+    goto <bb 7>;
+
+  <bb 7>:
+  D.2931 = ff - ii;
+  D.2932 = pthread_self ();
+  D.2933 = (long int) D.2932;
+  printf ("  Thread[%lu]: Executando sobre particao: %d [%d..%d]: %d.\n", D.2933, id, ii, ff, D.2931);
+  i = (int) ii;
+
+  <bb 9>:
+  D.2935 = (long int) i;
+  if (D.2935 < ff)
+    goto <bb 8>;
+  else
+    goto <bb 10>;
+
+  <bb 10>:
+  D.2936 = pthread_self ();
+  D.2937 = (long int) D.2936;
+  printf ("  Thread[%lu]: Terminando...\n", D.2937);
+  return;
+
+  <bb 8>:
+  h_c.17 = h_c;
+  D.2939 = (long unsigned int) i;
+  D.2940 = D.2939 * 4;
+  D.2941 = h_c.17 + D.2940;
+  h_a.18 = h_a;
+  D.2943 = (long unsigned int) i;
+  D.2944 = D.2943 * 4;
+  D.2945 = h_a.18 + D.2944;
+  D.2946 = *D.2945;
+  h_b.19 = h_b;
+  D.2948 = (long unsigned int) i;
+  D.2949 = D.2948 * 4;
+  D.2950 = h_b.19 + D.2949;
+  D.2951 = *D.2950;
+  D.2952 = D.2946 + D.2951;
+  *D.2941 = D.2952;
+  i = i + 1;
+  goto <bb 9>;
+
+  <bb 6>:
+  n.16 = n;
+  ff = (long int) n.16;
+  goto <bb 7>;
+
+}
+
+
