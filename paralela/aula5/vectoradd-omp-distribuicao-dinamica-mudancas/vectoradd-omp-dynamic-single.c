@@ -128,12 +128,15 @@ int main(int argc, char *argv[]) {
     id = omp_get_thread_num();
     bool has_work = false;
 
-    while ((has_work = get_next_loop_partition(&ii, &ff)) != false){
-      fprintf(stdout, "   Thread[%ld,%lu]: Working on partition: [%ld..%ld]: %ld.\n", id, (long int) pthread_self(), ii, ff, (ff - ii));
-      for (i = ii; i < ff; i++) {
-        h_c[i] = h_a[i] + h_b[i];
-      }  
-    }
+    #pragma omp single
+    {
+      while ((has_work = get_next_loop_partition(&ii, &ff)) != false){
+        fprintf(stdout, "   Thread[%ld,%lu]: Working on partition: [%ld..%ld]: %ld.\n", id, (long int) pthread_self(), ii, ff, (ff - ii));
+        for (i = ii; i < ff; i++) {
+          h_c[i] = h_a[i] + h_b[i];
+        }  
+      }
+     }
     if(!has_work){
       fprintf(stdout, "  Thread[%lu]: No work to do.\n", (long int) pthread_self());
     }

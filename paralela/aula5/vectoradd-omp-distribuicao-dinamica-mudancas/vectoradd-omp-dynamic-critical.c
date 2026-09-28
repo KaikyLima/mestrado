@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <semaphore.h>
 #include <inttypes.h>
 #include <stdbool.h>
 #include <pthread.h>
@@ -26,7 +25,6 @@ bool work_finished = false;
 
 int n = 0;
 
-sem_t mutex;
 
 void init_array(int n) {
   fprintf(stdout, "Thread[%lu]: Initializing the arrays.\n", (long int) pthread_self());
@@ -66,26 +64,26 @@ bool get_next_loop_partition(long *ii, long *ff) {
 
   fprintf(stdout, "Thread[%lu]: Trying to get the next partition.\n", (long int) pthread_self());
 
-  sem_wait(&mutex);
-  
-  if(work_finished){
-    ret = false;
-  }
-  else{
-    *ii = last_assigned;
-    *ff = last_assigned + partition;
+  #pragma omp critical
+  {
+    if(work_finished){
+      ret = false;
+    }
+    else{
+      *ii = last_assigned;
+      *ff = last_assigned + partition;
 
-    if (*ff > total_of_iterations){
-      *ff = total_of_iterations;
+      if (*ff > total_of_iterations){
+        *ff = total_of_iterations;
+      }
+
+      last_assigned = *ff;
+      ret = true;
+
+      work_finished = (last_assigned == total_of_iterations);
     }
 
-    last_assigned = *ff;
-    ret = true;
-
-    work_finished = (last_assigned == total_of_iterations);
   }
-
-  sem_post(&mutex);
 
   fprintf(stdout, "Thread[%lu]: Got the partition [%lu, %lu].\n", (long int) pthread_self(), *ii, *ff);
 
@@ -116,8 +114,8 @@ int main(int argc, char *argv[]) {
 
   init_array(num_elements);
 
-  sem_init(&mutex, 0, 1);      /* initialize mutex to 1 - binary semaphore */
-                                 /* second param = 0 - semaphore is local */
+
+  init_array(num_elements);
 
   work_finished = false;
 
