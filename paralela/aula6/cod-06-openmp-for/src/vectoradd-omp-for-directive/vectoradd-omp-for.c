@@ -42,16 +42,15 @@ void print_array(int n) {
 }
 
 void check_result(int n){
-  // Soma dos elementos do array C e divide por N, o valor deve ser igual a 1.
   int i;
-  float sum = 0;
+  double sum = 0;      
   fprintf(stdout, "Thread[%lu]: Checking.\n", (long int) pthread_self());
   
   for (i = 0; i < n; i++) {
 	  sum += h_c[i];
 	}
 	
-  fprintf(stdout, "Thread[%lu]: Final Result: (%f, %f).\n", (long int) pthread_self(), sum, (float)(sum / (float)n));
+  fprintf(stdout, "Thread[%lu]: Final Result: (%f, %f).\n", (long int) pthread_self(), sum, (double)(sum / (double)n));
 }
 
 int main(int argc, char *argv[]) {
