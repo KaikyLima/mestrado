@@ -1,0 +1,165 @@
+
+;; Function main (main, funcdef_no=2, decl_uid=2778, cgraph_uid=2)
+
+
+OMP region tree
+
+bb 2: gimple_omp_parallel
+    bb 3: gimple_omp_for
+        bb 5: gimple_omp_ordered
+        bb 6: GIMPLE_OMP_RETURN
+    bb 9: GIMPLE_OMP_CONTINUE
+    bb 10: GIMPLE_OMP_RETURN
+bb 11: GIMPLE_OMP_RETURN
+
+Merging blocks 2 and 19
+Merging blocks 2 and 12
+main ()
+{
+  _Bool D.2821;
+  long int D.2820;
+  long int D.2819;
+  long int .tem.5;
+  long int .iend0.4;
+  _Bool D.2816;
+  long int .iend0.3;
+  long int .istart0.2;
+  int j;
+  int k;
+  int i;
+  long int .iter.1;
+  int id;
+  int k;
+  int j;
+  int i;
+  int D.2800;
+  int D.2799;
+  long int D.2798;
+  int D.2797;
+  int D.2792;
+  long int D.2791;
+  int D.2790;
+
+  <bb 2>:
+  D.2790 = pthread_self ();
+  D.2791 = (long int) D.2790;
+  D.2792 = omp_get_thread_num ();
+  printf ("Thread[%d][%lu]: Before parallel region...\n", D.2792, D.2791);
+  __builtin_GOMP_parallel_start (main._omp_fn.0, 0B, 4);
+  main._omp_fn.0 (0B);
+  __builtin_GOMP_parallel_end ();
+  D.2797 = pthread_self ();
+  D.2798 = (long int) D.2797;
+  D.2799 = omp_get_thread_num ();
+  printf ("Thread[%d][%lu]: After parallel region...\n", D.2799, D.2798);
+  D.2800 = 0;
+
+<L3>:
+  return D.2800;
+
+}
+
+
+
+;; Function main._omp_fn.0 (main._omp_fn.0, funcdef_no=3, decl_uid=2802, cgraph_uid=6)
+
+main._omp_fn.0 (void * .omp_data_i)
+{
+  long int D.2838;
+  int D.2837;
+  _Bool D.2836;
+  int i;
+  int k;
+  long int D.2833;
+  int j;
+  long int D.2831;
+  long int .tem.5;
+  long int .iend0.4;
+  long int .iter.1;
+  _Bool D.2827;
+  long int .iend0.3;
+  long int .istart0.2;
+  long int D.2824;
+  int D.2823;
+  int id;
+
+  <bb 18>:
+
+  <bb 3>:
+  id = omp_get_thread_num ();
+  D.2823 = pthread_self ();
+  D.2824 = (long int) D.2823;
+  printf ("Thread[%d][%lu]: Threading starting...\n", id, D.2824);
+  D.2827 = __builtin_GOMP_loop_ordered_static_start (0, 9, 1, 0, &.istart0.2, &.iend0.3);
+  if (D.2827 != 0)
+    goto <bb 14>;
+  else
+    goto <bb 10>;
+
+  <bb 14>:
+  .iter.1 = .istart0.2;
+  .iend0.4 = .iend0.3;
+  .tem.5 = .iter.1;
+  D.2831 = .tem.5 % 3;
+  j = (int) D.2831;
+  .tem.5 = .tem.5 / 3;
+  D.2833 = .tem.5 % 3;
+  k = (int) D.2833;
+
+  <bb 4>:
+  i = 0;
+
+  <bb 8>:
+  if (i <= 2)
+    goto <bb 5>;
+  else
+    goto <bb 9>;
+
+  <bb 9>:
+  .iter.1 = .iter.1 + 1;
+  if (.iter.1 < .iend0.4)
+    goto <bb 16>;
+  else
+    goto <bb 15>;
+
+  <bb 15>:
+  D.2836 = __builtin_GOMP_loop_ordered_static_next (&.istart0.2, &.iend0.3);
+  if (D.2836 != 0)
+    goto <bb 14>;
+  else
+    goto <bb 10>;
+
+  <bb 16>:
+  j = j + 1;
+  if (j <= 2)
+    goto <bb 4>;
+  else
+    goto <bb 17>;
+
+  <bb 17>:
+  j = 0;
+  k = k + 1;
+  goto <bb 4>;
+
+  <bb 5>:
+
+  <bb 6>:
+  __builtin_GOMP_ordered_start ();
+  D.2837 = pthread_self ();
+  D.2838 = (long int) D.2837;
+  printf ("Thread[%d][%lu]: Working in [%lu,%lu,%lu] loop iteration.\n", id, D.2838, i, j, k);
+  __builtin_GOMP_ordered_end ();
+
+  <bb 7>:
+  i = i + 1;
+  goto <bb 8>;
+
+  <bb 10>:
+  __builtin_GOMP_loop_end_nowait ();
+
+  <bb 11>:
+  return;
+
+}
+
+

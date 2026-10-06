@@ -1,0 +1,5 @@
+digraph "CFG for 'main' function" {
+	label="CFG for 'main' function";
+
+	Node0x5616fe627230 [shape=record,color="#b70d28ff", style=filled, fillcolor="#b70d2870", fontname="Courier",label="{entry:\l|  %retval = alloca i32, align 4\l  %id = alloca i32, align 4\l  %i = alloca i32, align 4\l  %0 = call i32 @__kmpc_global_thread_num(ptr @3)\l  store i32 0, ptr %retval, align 4\l  %call = call i32 @omp_get_thread_num()\l  %call1 = call i64 @pthread_self() #6\l  %call2 = call i32 (ptr, ...) @printf(ptr noundef @.str, i32 noundef %call,\l... i64 noundef %call1)\l  call void @__kmpc_push_num_threads(ptr @3, i32 %0, i32 4)\l  call void (ptr, i32, ptr, ...) @__kmpc_fork_call(ptr @3, i32 0, ptr\l... @main.omp_outlined)\l  %call3 = call i32 @omp_get_thread_num()\l  %call4 = call i64 @pthread_self() #6\l  %call5 = call i32 (ptr, ...) @printf(ptr noundef @.str.2, i32 noundef\l... %call3, i64 noundef %call4)\l  ret i32 0\l}"];
+}

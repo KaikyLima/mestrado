@@ -1,0 +1,102 @@
+
+;; Function main (main, funcdef_no=0, decl_uid=1800, cgraph_uid=0)
+
+
+OMP region tree
+
+bb 2: gimple_omp_parallel
+    bb 3: gimple_omp_for
+    bb 4: GIMPLE_OMP_CONTINUE
+    bb 5: GIMPLE_OMP_RETURN
+bb 6: GIMPLE_OMP_RETURN
+
+Merging blocks 2 and 12
+Merging blocks 2 and 7
+main ()
+{
+  _Bool D.1823;
+  long int .iend0.5;
+  int D.1822;
+  long int .istart0.4;
+  long int D.1818;
+  _Bool D.1819;
+  long int .iend0.3;
+  long int .istart0.2;
+  int i;
+  int D.1813;
+  int n;
+  int i;
+  int D.1805;
+  struct .omp_data_s.0 .omp_data_o.1;
+
+  <bb 2>:
+  .omp_data_o.1.n = n;
+  __builtin_GOMP_parallel_start (main._omp_fn.0, &.omp_data_o.1, 0);
+  main._omp_fn.0 (&.omp_data_o.1);
+  __builtin_GOMP_parallel_end ();
+  n = .omp_data_o.1.n;
+  D.1805 = 0;
+
+<L0>:
+  return D.1805;
+
+}
+
+
+
+;; Function main._omp_fn.0 (main._omp_fn.0, funcdef_no=1, decl_uid=1807, cgraph_uid=1)
+
+main._omp_fn.0 (struct .omp_data_s.0 * .omp_data_i)
+{
+  int n [value-expr: .omp_data_i->n];
+  _Bool D.1833;
+  int D.1832;
+  long int .iend0.5;
+  int i;
+  long int .istart0.4;
+  _Bool D.1828;
+  long int .iend0.3;
+  long int .istart0.2;
+  long int D.1825;
+  int D.1824;
+
+  <bb 11>:
+
+  <bb 3>:
+  D.1824 = .omp_data_i->n;
+  D.1825 = (long int) D.1824;
+  D.1828 = __builtin_GOMP_loop_runtime_start (0, D.1825, 1, &.istart0.2, &.iend0.3);
+  if (D.1828 != 0)
+    goto <bb 9>;
+  else
+    goto <bb 5>;
+
+  <bb 9>:
+  .istart0.4 = .istart0.2;
+  i = (int) .istart0.4;
+  .iend0.5 = .iend0.3;
+  D.1832 = (int) .iend0.5;
+
+  <bb 4>:
+  i = i + 1;
+  if (i < D.1832)
+    goto <bb 4>;
+  else
+    goto <bb 10>;
+
+  <bb 10>:
+  D.1833 = __builtin_GOMP_loop_runtime_next (&.istart0.2, &.iend0.3);
+  if (D.1833 != 0)
+    goto <bb 9>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  __builtin_GOMP_loop_end_nowait ();
+
+  <bb 6>:
+  return;
+
+}
+
+

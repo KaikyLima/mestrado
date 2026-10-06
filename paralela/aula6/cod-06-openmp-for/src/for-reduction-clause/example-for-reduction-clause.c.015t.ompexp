@@ -1,0 +1,248 @@
+
+;; Function main (main, funcdef_no=2, decl_uid=2778, cgraph_uid=2)
+
+
+OMP region tree
+
+bb 5: gimple_omp_parallel
+    bb 11: gimple_omp_master
+    bb 14: GIMPLE_OMP_RETURN
+    bb 6: gimple_omp_for
+        bb 8: gimple_omp_atomic_load
+        bb 9: GIMPLE_OMP_RETURN
+    bb 7: GIMPLE_OMP_CONTINUE
+    bb 10: GIMPLE_OMP_RETURN
+bb 15: GIMPLE_OMP_RETURN
+
+Merging blocks 5 and 22
+Merging blocks 5 and 16
+main ()
+{
+  int D.2853;
+  int D.2851;
+  int D.2852;
+  int tt.4;
+  int q.3;
+  int D.2848;
+  int D.2847;
+  unsigned int dot.2;
+  int D.2840;
+  int dot;
+  int i;
+  int D.2838;
+  int * D.2837;
+  int D.2836;
+  int dot;
+  int id;
+  int i;
+  int B[16];
+  int A[16];
+  int D.2812;
+  int D.2811;
+  long int D.2810;
+  int D.2809;
+  int D.2793;
+  long int D.2792;
+  int D.2791;
+  struct .omp_data_s.0 .omp_data_o.1;
+  int D.2842;
+  int D.2835;
+  int[16] * D.2834;
+  int[16] * D.2833;
+  int[16] * D.2832;
+  int[16] * D.2831;
+  int[16] * D.2830;
+  int[16] * D.2829;
+  int D.2828;
+  int D.2827;
+
+  <bb 2>:
+  dot = 0;
+  i = 0;
+  goto <bb 4>;
+
+  <bb 3>:
+  A[i] = i;
+  B[i] = i;
+  i = i + 1;
+
+  <bb 4>:
+  if (i <= 15)
+    goto <bb 3>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  D.2791 = pthread_self ();
+  D.2792 = (long int) D.2791;
+  D.2793 = omp_get_thread_num ();
+  printf ("Thread[%d][%lu]: Before parallel region...\n", D.2793, D.2792);
+  .omp_data_o.1.A = &A;
+  .omp_data_o.1.B = &B;
+  .omp_data_o.1.id = id;
+  .omp_data_o.1.dot = dot;
+  __builtin_GOMP_parallel_start (main._omp_fn.0, &.omp_data_o.1, 0);
+  main._omp_fn.0 (&.omp_data_o.1);
+  __builtin_GOMP_parallel_end ();
+  id = .omp_data_o.1.id;
+  dot = .omp_data_o.1.dot;
+  D.2809 = pthread_self ();
+  D.2810 = (long int) D.2809;
+  D.2811 = omp_get_thread_num ();
+  printf ("Thread[%d][%lu]: After parallel region dot: %d...\n", D.2811, D.2810, dot);
+  D.2812 = 0;
+  A = {CLOBBER};
+  B = {CLOBBER};
+
+<L6>:
+  return D.2812;
+
+}
+
+
+
+;; Function main._omp_fn.0 (main._omp_fn.0, funcdef_no=3, decl_uid=2814, cgraph_uid=6)
+
+main._omp_fn.0 (struct .omp_data_s.0 * .omp_data_i)
+{
+  int D.2896;
+  int D.2895;
+  int dot [value-expr: .omp_data_i->dot];
+  int id [value-expr: .omp_data_i->id];
+  int B[16] [value-expr: *.omp_data_i->B];
+  int A[16] [value-expr: *.omp_data_i->A];
+  int D.2890;
+  int D.2889;
+  long int D.2888;
+  int D.2887;
+  int D.2886;
+  unsigned int dot.2;
+  int * D.2884;
+  int D.2883;
+  long int D.2882;
+  int D.2881;
+  int D.2880;
+  int[16] * D.2879;
+  int D.2878;
+  int[16] * D.2877;
+  int D.2876;
+  int D.2875;
+  int[16] * D.2874;
+  int D.2873;
+  int[16] * D.2872;
+  int D.2871;
+  int D.2870;
+  int[16] * D.2869;
+  int D.2868;
+  int[16] * D.2867;
+  int i;
+  int D.2865;
+  int D.2864;
+  int D.2863;
+  int tt.4;
+  int q.3;
+  int D.2860;
+  int D.2859;
+  int dot;
+  int D.2857;
+  long int D.2856;
+  int D.2855;
+  int D.2854;
+
+  <bb 21>:
+
+  <bb 6>:
+  D.2854 = omp_get_thread_num ();
+  .omp_data_i->id = D.2854;
+  D.2855 = pthread_self ();
+  D.2856 = (long int) D.2855;
+  D.2857 = .omp_data_i->id;
+  printf ("Thread[%d][%lu]: Threading starting...\n", D.2857, D.2856);
+  dot = 0;
+  D.2859 = __builtin_omp_get_num_threads ();
+  D.2860 = __builtin_omp_get_thread_num ();
+  q.3 = 16 / D.2859;
+  tt.4 = 16 % D.2859;
+  if (D.2860 < tt.4)
+    goto <bb 19>;
+  else
+    goto <bb 20>;
+
+  <bb 20>:
+  D.2863 = q.3 * D.2860;
+  D.2864 = D.2863 + tt.4;
+  D.2865 = D.2864 + q.3;
+  if (D.2864 >= D.2865)
+    goto <bb 8>;
+  else
+    goto <bb 18>;
+
+  <bb 18>:
+  i = D.2864;
+
+  <bb 7>:
+  D.2867 = .omp_data_i->A;
+  D.2868 = *D.2867[i];
+  D.2869 = .omp_data_i->B;
+  D.2870 = *D.2869[i];
+  D.2871 = D.2868 * D.2870;
+  dot = D.2871 + dot;
+  D.2872 = .omp_data_i->A;
+  D.2873 = *D.2872[i];
+  D.2874 = .omp_data_i->B;
+  D.2875 = *D.2874[i];
+  D.2876 = D.2873 * D.2875;
+  D.2877 = .omp_data_i->B;
+  D.2878 = *D.2877[i];
+  D.2879 = .omp_data_i->A;
+  D.2880 = *D.2879[i];
+  D.2881 = pthread_self ();
+  D.2882 = (long int) D.2881;
+  D.2883 = .omp_data_i->id;
+  printf ("Thread[%d][%lu]: Working in %lu loop iteration %d * %d = %d -> %d.\n", D.2883, D.2882, i, D.2880, D.2878, D.2876, dot);
+  i = i + 1;
+  if (i < D.2865)
+    goto <bb 7>;
+  else
+    goto <bb 8>;
+
+  <bb 8>:
+  D.2884 = &.omp_data_i->dot;
+  dot.2 = (unsigned int) dot;
+  __atomic_fetch_add_4 (D.2884, dot.2, 0);
+
+  <bb 9>:
+
+  <bb 10>:
+  __builtin_GOMP_barrier ();
+
+  <bb 11>:
+
+  <bb 12>:
+  D.2886 = __builtin_omp_get_thread_num ();
+  if (D.2886 == 0)
+    goto <bb 13>;
+  else
+    goto <bb 14>;
+
+  <bb 14>:
+
+  <bb 15>:
+  return;
+
+  <bb 13>:
+  D.2887 = pthread_self ();
+  D.2888 = (long int) D.2887;
+  D.2889 = omp_get_thread_num ();
+  D.2890 = .omp_data_i->dot;
+  printf ("Thread[%d][%lu]: dot at the loop final: %d.\n", D.2889, D.2888, D.2890);
+  goto <bb 14>;
+
+  <bb 19>:
+  tt.4 = 0;
+  q.3 = q.3 + 1;
+  goto <bb 20>;
+
+}
+
+

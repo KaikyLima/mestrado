@@ -1,0 +1,357 @@
+
+;; Function init_array (init_array, funcdef_no=6, decl_uid=5715, cgraph_uid=11, symbol_order=10)
+
+void init_array (int n)
+{
+  int i;
+
+  <bb 2> :
+  _1 = pthread_self ();
+  _2 = (long int) _1;
+  stdout.0_3 = stdout;
+  fprintf (stdout.0_3, "Thread[%lu]: Initializing the arrays.\n", _2);
+  i = 0;
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  h_a.1_4 = h_a;
+  _5 = (long unsigned int) i;
+  _6 = _5 * 4;
+  _7 = h_a.1_4 + _6;
+  *_7 = 5.0e-1;
+  h_b.2_8 = h_b;
+  _9 = (long unsigned int) i;
+  _10 = _9 * 4;
+  _11 = h_b.2_8 + _10;
+  *_11 = 5.0e-1;
+  i = i + 1;
+
+  <bb 4> :
+  if (i < n)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  return;
+
+}
+
+
+
+;; Function print_array (print_array, funcdef_no=7, decl_uid=5723, cgraph_uid=12, symbol_order=11)
+
+void print_array (int n)
+{
+  int i;
+
+  <bb 2> :
+  i = 0;
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  h_c.3_1 = h_c;
+  _2 = (long unsigned int) i;
+  _3 = _2 * 4;
+  _4 = h_c.3_1 + _3;
+  _5 = *_4;
+  _6 = (double) _5;
+  _7 = pthread_self ();
+  _8 = (long int) _7;
+  stdout.4_9 = stdout;
+  fprintf (stdout.4_9, "Thread[%lu]: h_c[%07d]: %f.\n", _8, i, _6);
+  i = i + 1;
+
+  <bb 4> :
+  if (i < n)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  return;
+
+}
+
+
+
+;; Function check_result (check_result, funcdef_no=8, decl_uid=5731, cgraph_uid=13, symbol_order=12)
+
+void check_result (int n)
+{
+  float sum;
+  int i;
+
+  <bb 2> :
+  sum = 0.0;
+  _1 = pthread_self ();
+  _2 = (long int) _1;
+  stdout.5_3 = stdout;
+  fprintf (stdout.5_3, "Thread[%lu]: Checking.\n", _2);
+  i = 0;
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  h_c.6_4 = h_c;
+  _5 = (long unsigned int) i;
+  _6 = _5 * 4;
+  _7 = h_c.6_4 + _6;
+  _8 = *_7;
+  sum = sum + _8;
+  i = i + 1;
+
+  <bb 4> :
+  if (i < n)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  _9 = (float) n;
+  _10 = sum / _9;
+  _11 = (double) _10;
+  _12 = (double) sum;
+  _13 = pthread_self ();
+  _14 = (long int) _13;
+  stdout.7_15 = stdout;
+  fprintf (stdout.7_15, "Thread[%lu]: Final Result: (%f, %f).\n", _14, _12, _11);
+  return;
+
+}
+
+
+
+;; Function main (main, funcdef_no=9, decl_uid=5741, cgraph_uid=14, symbol_order=13)
+
+
+OMP region tree
+
+bb 4: gimple_omp_parallel
+    bb 5: gimple_omp_for
+    bb 6: GIMPLE_OMP_CONTINUE
+    bb 7: GIMPLE_OMP_RETURN
+bb 8: GIMPLE_OMP_RETURN
+
+Added new low gimple function main._omp_fn.0 to callgraph
+Introduced new external node (omp_get_thread_num/19).
+Introduced new external node (__builtin_GOMP_loop_nonmonotonic_dynamic_start/20).
+Introduced new external node (__builtin_GOMP_loop_nonmonotonic_dynamic_next/21).
+Introduced new external node (__builtin_GOMP_loop_end/22).
+
+;; Function main._omp_fn.0 (main._omp_fn.0, funcdef_no=10, decl_uid=5776, cgraph_uid=18, symbol_order=17)
+
+void main._omp_fn.0 (struct .omp_data_s.23 & restrict .omp_data_i)
+{
+  struct FILE * stdout.18;
+  long int D.5829;
+  long unsigned int D.5828;
+  bool D.5827;
+  float D.5826;
+  float * D.5825;
+  long unsigned int D.5824;
+  long unsigned int D.5823;
+  float * h_c.17;
+  float D.5821;
+  float * D.5820;
+  long unsigned int D.5819;
+  long unsigned int D.5818;
+  float * h_b.16;
+  float D.5816;
+  float * D.5815;
+  long unsigned int D.5814;
+  long unsigned int D.5813;
+  float * h_a.15;
+  struct FILE * stdout.14;
+  long int D.5810;
+  long unsigned int D.5809;
+  int D.5808;
+  long int .iend0.29;
+  int i;
+  long int .istart0.28;
+  bool D.5804;
+  long int .iend0.27;
+  long int .istart0.26;
+  long int D.5801;
+  long int D.5800;
+  int num_elements.24;
+  int partition.13;
+  long int id;
+  int D.5796;
+  int num_elements;
+
+  <bb 13> :
+
+  <bb 5> :
+  num_elements = .omp_data_i->num_elements;
+  D.5796 = omp_get_thread_num ();
+  id = (long int) D.5796;
+  partition.13 = partition;
+  num_elements.24 = num_elements;
+  D.5800 = (long int) partition.13;
+  D.5801 = (long int) num_elements.24;
+  D.5804 = __builtin_GOMP_loop_nonmonotonic_dynamic_start (0, D.5801, 1, D.5800, &.istart0.26, &.iend0.27);
+  if (D.5804 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 11> :
+  .istart0.28 = .istart0.26;
+  i = (int) .istart0.28;
+  .iend0.29 = .iend0.27;
+  D.5808 = (int) .iend0.29;
+
+  <bb 6> :
+  D.5809 = pthread_self ();
+  D.5810 = (long int) D.5809;
+  stdout.14 = stdout;
+  fprintf (stdout.14, "   Thread[%lu,%lu]: Working on partition.\n", id, D.5810);
+  h_a.15 = h_a;
+  D.5813 = (long unsigned int) i;
+  D.5814 = D.5813 * 4;
+  D.5815 = h_a.15 + D.5814;
+  D.5816 = *D.5815;
+  h_b.16 = h_b;
+  D.5818 = (long unsigned int) i;
+  D.5819 = D.5818 * 4;
+  D.5820 = h_b.16 + D.5819;
+  D.5821 = *D.5820;
+  h_c.17 = h_c;
+  D.5823 = (long unsigned int) i;
+  D.5824 = D.5823 * 4;
+  D.5825 = h_c.17 + D.5824;
+  D.5826 = D.5816 + D.5821;
+  *D.5825 = D.5826;
+  i = i + 1;
+  if (i < D.5808)
+    goto <bb 6>; [87.50%]
+  else
+    goto <bb 12>; [12.50%]
+
+  <bb 12> :
+  D.5827 = __builtin_GOMP_loop_nonmonotonic_dynamic_next (&.istart0.26, &.iend0.27);
+  if (D.5827 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  __builtin_GOMP_loop_end ();
+
+  <bb 8> :
+  D.5828 = pthread_self ();
+  D.5829 = (long int) D.5828;
+  stdout.18 = stdout;
+  fprintf (stdout.18, "  Thread[%lu]: Exiting.\n", D.5829);
+  return;
+
+}
+
+
+
+;; Function main (main, funcdef_no=9, decl_uid=5741, cgraph_uid=14, symbol_order=13)
+
+Merging blocks 4 and 14
+Merging blocks 4 and 9
+__attribute__((access ("^1[ ]", )))
+int main (int argc, char * * argv)
+{
+  unsigned int num_threads.30;
+  bool D.5794;
+  long int .iend0.29;
+  int D.5793;
+  long int .istart0.28;
+  long int D.5788;
+  long int D.5789;
+  bool D.5790;
+  long int .iend0.27;
+  long int .istart0.26;
+  int i;
+  int num_elements.24;
+  long int id;
+  int num_threads;
+  int num_elements;
+  int i;
+  int D.5774;
+  struct .omp_data_s.23 .omp_data_o.25;
+
+  <bb 2> :
+  num_threads = 0;
+  if (argc <= 3)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  _1 = *argv;
+  stderr.8_2 = stderr;
+  fprintf (stderr.8_2, "Uso: %s <num_elements> <num_threads> <partition_size>\n", _1);
+  exit (0);
+
+  <bb 4> :
+  _3 = argv + 8;
+  _4 = *_3;
+  num_elements = atoi (_4);
+  _5 = argv + 16;
+  _6 = *_5;
+  num_threads = atoi (_6);
+  _7 = argv + 24;
+  _8 = *_7;
+  _9 = atoi (_8);
+  partition = _9;
+  _10 = pthread_self ();
+  _11 = (long int) _10;
+  stdout.9_12 = stdout;
+  fprintf (stdout.9_12, "Thread[%lu]: num_elements: %d num_threads: %d.\n", _11, num_elements, num_threads);
+  _13 = pthread_self ();
+  _14 = (long int) _13;
+  stdout.10_15 = stdout;
+  fprintf (stdout.10_15, "Thread[%lu]: Allocating the arrays.\n", _14);
+  _16 = (long unsigned int) num_elements;
+  _17 = _16 * 4;
+  _18 = malloc (_17);
+  h_a = _18;
+  _19 = (long unsigned int) num_elements;
+  _20 = _19 * 4;
+  _21 = malloc (_20);
+  h_b = _21;
+  _22 = (long unsigned int) num_elements;
+  _23 = _22 * 4;
+  _24 = malloc (_23);
+  h_c = _24;
+  init_array (num_elements);
+  _25 = pthread_self ();
+  _26 = (long int) _25;
+  stdout.11_27 = stdout;
+  fprintf (stdout.11_27, "Thread[%lu]: Before parallel region.\n", _26);
+  num_threads.12_28 = num_threads;
+  .omp_data_o.25.num_elements = num_elements;
+  num_threads.30 = (unsigned int) num_threads.12_28;
+  __builtin_GOMP_parallel (main._omp_fn.0, &.omp_data_o.25, num_threads.30, 0);
+  .omp_data_o.25 = {CLOBBER};
+  _29 = pthread_self ();
+  _30 = (long int) _29;
+  stdout.19_31 = stdout;
+  fprintf (stdout.19_31, "Thread[%lu]: All threads were finished.\n", _30);
+  _32 = pthread_self ();
+  _33 = (long int) _32;
+  stdout.20_34 = stdout;
+  fprintf (stdout.20_34, "Thread[%lu]: Printing the result.\n", _33);
+  _35 = pthread_self ();
+  _36 = (long int) _35;
+  stdout.21_37 = stdout;
+  fprintf (stdout.21_37, "Thread[%lu]: Checking the result.\n", _36);
+  check_result (num_elements);
+  _38 = pthread_self ();
+  _39 = (long int) _38;
+  stdout.22_40 = stdout;
+  fprintf (stdout.22_40, "Thread[%lu]: Fui, Tchau!\n", _39);
+  D.5774 = 0;
+
+  <bb 5> :
+<L2>:
+  return D.5774;
+
+}
+
+

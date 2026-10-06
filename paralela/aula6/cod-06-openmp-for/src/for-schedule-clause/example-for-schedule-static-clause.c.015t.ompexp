@@ -1,0 +1,188 @@
+
+;; Function main (main, funcdef_no=2, decl_uid=2778, cgraph_uid=2)
+
+
+OMP region tree
+
+bb 5: gimple_omp_parallel
+    bb 6: gimple_omp_for
+    bb 7: GIMPLE_OMP_CONTINUE
+    bb 8: GIMPLE_OMP_RETURN
+bb 9: GIMPLE_OMP_RETURN
+
+Merging blocks 5 and 16
+Merging blocks 5 and 10
+main ()
+{
+  int D.2837;
+  int D.2838;
+  int D.2834;
+  int D.2835;
+  int D.2836;
+  int D.2833;
+  int .trip.2;
+  int D.2831;
+  int D.2830;
+  int i;
+  int dot;
+  int id;
+  int i;
+  int C[16];
+  int B[16];
+  int A[16];
+  int D.2808;
+  int D.2807;
+  long int D.2806;
+  int D.2805;
+  int D.2794;
+  long int D.2793;
+  int D.2792;
+  struct .omp_data_s.0 .omp_data_o.1;
+  int[16] * D.2826;
+  int[16] * D.2825;
+  int[16] * D.2824;
+  int[16] * D.2823;
+  int[16] * D.2822;
+  int[16] * D.2821;
+
+  <bb 2>:
+  dot = 0;
+  i = 0;
+  goto <bb 4>;
+
+  <bb 3>:
+  A[i] = i;
+  B[i] = i;
+  C[i] = 0;
+  i = i + 1;
+
+  <bb 4>:
+  if (i <= 15)
+    goto <bb 3>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  D.2792 = pthread_self ();
+  D.2793 = (long int) D.2792;
+  D.2794 = omp_get_thread_num ();
+  printf ("Thread[%d][%lu]: Before parallel region...\n", D.2794, D.2793);
+  .omp_data_o.1.A = &A;
+  .omp_data_o.1.B = &B;
+  .omp_data_o.1.C = &C;
+  __builtin_GOMP_parallel_start (main._omp_fn.0, &.omp_data_o.1, 4);
+  main._omp_fn.0 (&.omp_data_o.1);
+  __builtin_GOMP_parallel_end ();
+  D.2805 = pthread_self ();
+  D.2806 = (long int) D.2805;
+  D.2807 = omp_get_thread_num ();
+  printf ("Thread[%d][%lu]: After parallel region...\n", D.2807, D.2806);
+  D.2808 = 0;
+  A = {CLOBBER};
+  B = {CLOBBER};
+  C = {CLOBBER};
+
+<L4>:
+  return D.2808;
+
+}
+
+
+
+;; Function main._omp_fn.0 (main._omp_fn.0, funcdef_no=3, decl_uid=2810, cgraph_uid=6)
+
+main._omp_fn.0 (struct .omp_data_s.0 * .omp_data_i)
+{
+  int C[16] [value-expr: *.omp_data_i->C];
+  int B[16] [value-expr: *.omp_data_i->B];
+  int A[16] [value-expr: *.omp_data_i->A];
+  long int D.2865;
+  int D.2864;
+  int D.2863;
+  int[16] * D.2862;
+  int D.2861;
+  int[16] * D.2860;
+  int D.2859;
+  int[16] * D.2858;
+  int[16] * D.2857;
+  int D.2856;
+  int D.2855;
+  int[16] * D.2854;
+  int D.2853;
+  int[16] * D.2852;
+  int i;
+  int D.2850;
+  int D.2849;
+  int D.2848;
+  int D.2847;
+  int D.2846;
+  int D.2845;
+  int .trip.2;
+  int D.2843;
+  int D.2842;
+  long int D.2841;
+  int D.2840;
+  int id;
+
+  <bb 15>:
+
+  <bb 6>:
+  id = omp_get_thread_num ();
+  D.2840 = pthread_self ();
+  D.2841 = (long int) D.2840;
+  printf ("Thread[%d][%lu]: Threading starting...\n", id, D.2841);
+  D.2842 = __builtin_omp_get_num_threads ();
+  D.2843 = __builtin_omp_get_thread_num ();
+  .trip.2 = 0;
+  D.2845 = D.2843 * 2;
+
+  <bb 12>:
+  D.2846 = .trip.2 * D.2842;
+  D.2847 = D.2846 + D.2843;
+  D.2848 = D.2847 * 2;
+  D.2849 = D.2848 + 2;
+  D.2850 = MIN_EXPR <D.2849, 16>;
+  if (D.2848 < 16)
+    goto <bb 13>;
+  else
+    goto <bb 8>;
+
+  <bb 13>:
+  i = D.2848;
+
+  <bb 7>:
+  D.2852 = .omp_data_i->A;
+  D.2853 = *D.2852[i];
+  D.2854 = .omp_data_i->B;
+  D.2855 = *D.2854[i];
+  D.2856 = D.2853 * D.2855;
+  D.2857 = .omp_data_i->C;
+  *D.2857[i] = D.2856;
+  D.2858 = .omp_data_i->C;
+  D.2859 = *D.2858[i];
+  D.2860 = .omp_data_i->B;
+  D.2861 = *D.2860[i];
+  D.2862 = .omp_data_i->A;
+  D.2863 = *D.2862[i];
+  D.2864 = pthread_self ();
+  D.2865 = (long int) D.2864;
+  printf ("Thread[%d][%lu]: Working in %lu loop iteration %d * %d = %d.\n", id, D.2865, i, D.2863, D.2861, D.2859);
+  i = i + 1;
+  if (i < D.2850)
+    goto <bb 7>;
+  else
+    goto <bb 14>;
+
+  <bb 14>:
+  .trip.2 = .trip.2 + 1;
+  goto <bb 12>;
+
+  <bb 8>:
+  __builtin_GOMP_barrier ();
+
+  <bb 9>:
+  return;
+
+}
+
+

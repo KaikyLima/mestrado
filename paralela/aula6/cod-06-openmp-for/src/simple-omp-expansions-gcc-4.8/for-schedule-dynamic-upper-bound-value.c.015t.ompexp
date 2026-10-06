@@ -1,0 +1,87 @@
+
+;; Function main (main, funcdef_no=0, decl_uid=1800, cgraph_uid=0)
+
+
+OMP region tree
+
+bb 2: gimple_omp_parallel
+    bb 3: gimple_omp_for
+    bb 4: GIMPLE_OMP_CONTINUE
+    bb 5: GIMPLE_OMP_RETURN
+bb 6: GIMPLE_OMP_RETURN
+
+Merging blocks 2 and 11
+Merging blocks 2 and 7
+main ()
+{
+  _Bool D.1815;
+  long int .iend0.4;
+  int D.1814;
+  long int .istart0.3;
+  _Bool D.1811;
+  long int .iend0.2;
+  long int .istart0.1;
+  int i;
+  int i;
+
+  <bb 2>:
+  __builtin_GOMP_parallel_loop_dynamic_start (main._omp_fn.0, 0B, 0, 0, 1024, 1, 1);
+  main._omp_fn.0 (0B);
+  __builtin_GOMP_parallel_end ();
+  return;
+
+}
+
+
+
+;; Function main._omp_fn.0 (main._omp_fn.0, funcdef_no=1, decl_uid=1805, cgraph_uid=1)
+
+main._omp_fn.0 (void * .omp_data_i)
+{
+  _Bool D.1823;
+  int D.1822;
+  long int .iend0.4;
+  int i;
+  long int .istart0.3;
+  _Bool D.1818;
+  long int .iend0.2;
+  long int .istart0.1;
+
+  <bb 10>:
+
+  <bb 3>:
+  D.1818 = __builtin_GOMP_loop_dynamic_next (&.istart0.1, &.iend0.2);
+  if (D.1818 != 0)
+    goto <bb 8>;
+  else
+    goto <bb 5>;
+
+  <bb 8>:
+  .istart0.3 = .istart0.1;
+  i = (int) .istart0.3;
+  .iend0.4 = .iend0.2;
+  D.1822 = (int) .iend0.4;
+
+  <bb 4>:
+  i = i + 1;
+  if (i < D.1822)
+    goto <bb 4>;
+  else
+    goto <bb 9>;
+
+  <bb 9>:
+  D.1823 = __builtin_GOMP_loop_dynamic_next (&.istart0.1, &.iend0.2);
+  if (D.1823 != 0)
+    goto <bb 8>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  __builtin_GOMP_loop_end_nowait ();
+
+  <bb 6>:
+  return;
+
+}
+
+

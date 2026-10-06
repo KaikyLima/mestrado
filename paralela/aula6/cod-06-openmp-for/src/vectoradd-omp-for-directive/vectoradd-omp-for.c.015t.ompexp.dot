@@ -1,0 +1,339 @@
+digraph "vectoradd-omp-for.c.015t.ompexp" {
+overlap=false;
+subgraph "init_array" {
+	color="black";
+	label="init_array";
+	fn_2_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_2_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|D.2885\ =\ pthread_self\ ();\l\
+|D.2886\ =\ (long\ int)\ D.2885;\l\
+|stdout.0\ =\ stdout;\l\
+|fprintf\ (stdout.0,\ \"Thread[%lu]:\ Initializing\ the\ arrays.\n\",\ D.2886);\l\
+|i\ =\ 0;\l\
+goto\ \<bb\ 4\>;\l\
+}"];
+
+	fn_2_basic_block_4 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 4\>:\l\
+|if\ (i\ \<\ n)\l\
+\ \ goto\ \<bb\ 3\>;\l\
+else\l\
+\ \ goto\ \<bb\ 5\>;\l\
+}"];
+
+	fn_2_basic_block_5 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 5\>:\l\
+|return;\l\
+}"];
+
+	fn_2_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+|h_a.1\ =\ h_a;\l\
+|D.2889\ =\ (long\ unsigned\ int)\ i;\l\
+|D.2890\ =\ D.2889\ *\ 4;\l\
+|D.2891\ =\ h_a.1\ +\ D.2890;\l\
+|*D.2891\ =\ 5.0e-1;\l\
+|h_b.2\ =\ h_b;\l\
+|D.2893\ =\ (long\ unsigned\ int)\ i;\l\
+|D.2894\ =\ D.2893\ *\ 4;\l\
+|D.2895\ =\ h_b.2\ +\ D.2894;\l\
+|*D.2895\ =\ 5.0e-1;\l\
+|i\ =\ i\ +\ 1;\l\
+}"];
+
+	fn_2_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_2_basic_block_0:s -> fn_2_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_2_basic_block_2:s -> fn_2_basic_block_4:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_2_basic_block_3:s -> fn_2_basic_block_4:n [style="dotted,bold",color=blue,weight=10,constraint=false];
+	fn_2_basic_block_4:s -> fn_2_basic_block_3:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_2_basic_block_4:s -> fn_2_basic_block_5:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_2_basic_block_5:s -> fn_2_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_2_basic_block_0:s -> fn_2_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "print_array" {
+	color="black";
+	label="print_array";
+	fn_3_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_3_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|i\ =\ 0;\l\
+goto\ \<bb\ 4\>;\l\
+}"];
+
+	fn_3_basic_block_4 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 4\>:\l\
+|if\ (i\ \<\ n)\l\
+\ \ goto\ \<bb\ 3\>;\l\
+else\l\
+\ \ goto\ \<bb\ 5\>;\l\
+}"];
+
+	fn_3_basic_block_5 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 5\>:\l\
+|return;\l\
+}"];
+
+	fn_3_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+|h_c.3\ =\ h_c;\l\
+|D.2897\ =\ (long\ unsigned\ int)\ i;\l\
+|D.2898\ =\ D.2897\ *\ 4;\l\
+|D.2899\ =\ h_c.3\ +\ D.2898;\l\
+|D.2900\ =\ *D.2899;\l\
+|D.2901\ =\ (double)\ D.2900;\l\
+|D.2902\ =\ pthread_self\ ();\l\
+|D.2903\ =\ (long\ int)\ D.2902;\l\
+|stdout.4\ =\ stdout;\l\
+|fprintf\ (stdout.4,\ \"Thread[%lu]:\ h_c[%07d]:\ %f.\n\",\ D.2903,\ i,\ D.2901);\l\
+|i\ =\ i\ +\ 1;\l\
+}"];
+
+	fn_3_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_3_basic_block_0:s -> fn_3_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3_basic_block_2:s -> fn_3_basic_block_4:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_3_basic_block_3:s -> fn_3_basic_block_4:n [style="dotted,bold",color=blue,weight=10,constraint=false];
+	fn_3_basic_block_4:s -> fn_3_basic_block_3:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3_basic_block_4:s -> fn_3_basic_block_5:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3_basic_block_5:s -> fn_3_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_3_basic_block_0:s -> fn_3_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "check_result" {
+	color="black";
+	label="check_result";
+	fn_4_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_4_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|sum\ =\ 0.0;\l\
+|D.2905\ =\ pthread_self\ ();\l\
+|D.2906\ =\ (long\ int)\ D.2905;\l\
+|stdout.5\ =\ stdout;\l\
+|fprintf\ (stdout.5,\ \"Thread[%lu]:\ Checking.\n\",\ D.2906);\l\
+|i\ =\ 0;\l\
+goto\ \<bb\ 4\>;\l\
+}"];
+
+	fn_4_basic_block_4 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 4\>:\l\
+|if\ (i\ \<\ n)\l\
+\ \ goto\ \<bb\ 3\>;\l\
+else\l\
+\ \ goto\ \<bb\ 5\>;\l\
+}"];
+
+	fn_4_basic_block_5 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 5\>:\l\
+|D.2913\ =\ (float)\ n;\l\
+|D.2914\ =\ sum\ /\ D.2913;\l\
+|D.2915\ =\ (double)\ D.2914;\l\
+|D.2916\ =\ (double)\ sum;\l\
+|D.2917\ =\ pthread_self\ ();\l\
+|D.2918\ =\ (long\ int)\ D.2917;\l\
+|stdout.7\ =\ stdout;\l\
+|fprintf\ (stdout.7,\ \"Thread[%lu]:\ Final\ Result:\ (%f,\ %f).\n\",\ D.2918,\ D.2916,\ D.2915);\l\
+|return;\l\
+}"];
+
+	fn_4_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+|h_c.6\ =\ h_c;\l\
+|D.2909\ =\ (long\ unsigned\ int)\ i;\l\
+|D.2910\ =\ D.2909\ *\ 4;\l\
+|D.2911\ =\ h_c.6\ +\ D.2910;\l\
+|D.2912\ =\ *D.2911;\l\
+|sum\ =\ D.2912\ +\ sum;\l\
+|i\ =\ i\ +\ 1;\l\
+}"];
+
+	fn_4_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_4_basic_block_0:s -> fn_4_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_4_basic_block_2:s -> fn_4_basic_block_4:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_4_basic_block_3:s -> fn_4_basic_block_4:n [style="dotted,bold",color=blue,weight=10,constraint=false];
+	fn_4_basic_block_4:s -> fn_4_basic_block_3:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_4_basic_block_4:s -> fn_4_basic_block_5:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_4_basic_block_5:s -> fn_4_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_4_basic_block_0:s -> fn_4_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "main" {
+	color="black";
+	label="main";
+	fn_5_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_5_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|num_threads\ =\ 0;\l\
+|if\ (argc\ \<=\ 3)\l\
+\ \ goto\ \<bb\ 3\>;\l\
+else\l\
+\ \ goto\ \<bb\ 4\>;\l\
+}"];
+
+	fn_5_basic_block_4 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 4\>:\l\
+|D.2924\ =\ argv\ +\ 8;\l\
+|D.2925\ =\ *D.2924;\l\
+|num_elements\ =\ atoi\ (D.2925);\l\
+|D.2926\ =\ argv\ +\ 16;\l\
+|D.2927\ =\ *D.2926;\l\
+|num_threads\ =\ atoi\ (D.2927);\l\
+|D.2928\ =\ argv\ +\ 24;\l\
+|D.2929\ =\ *D.2928;\l\
+|partition.9\ =\ atoi\ (D.2929);\l\
+|partition\ =\ partition.9;\l\
+|D.2931\ =\ pthread_self\ ();\l\
+|D.2932\ =\ (long\ int)\ D.2931;\l\
+|stdout.10\ =\ stdout;\l\
+|fprintf\ (stdout.10,\ \"Thread[%lu]:\ num_elements:\ %d\ num_threads:\ %d.\n\",\ D.2932,\ num_elements,\ num_threads);\l\
+|D.2934\ =\ pthread_self\ ();\l\
+|D.2935\ =\ (long\ int)\ D.2934;\l\
+|stdout.11\ =\ stdout;\l\
+|fprintf\ (stdout.11,\ \"Thread[%lu]:\ Allocating\ the\ arrays.\n\",\ D.2935);\l\
+|D.2937\ =\ (long\ unsigned\ int)\ num_elements;\l\
+|D.2938\ =\ D.2937\ *\ 4;\l\
+|h_a.12\ =\ malloc\ (D.2938);\l\
+|h_a\ =\ h_a.12;\l\
+|D.2940\ =\ (long\ unsigned\ int)\ num_elements;\l\
+|D.2941\ =\ D.2940\ *\ 4;\l\
+|h_b.13\ =\ malloc\ (D.2941);\l\
+|h_b\ =\ h_b.13;\l\
+|D.2943\ =\ (long\ unsigned\ int)\ num_elements;\l\
+|D.2944\ =\ D.2943\ *\ 4;\l\
+|h_c.14\ =\ malloc\ (D.2944);\l\
+|h_c\ =\ h_c.14;\l\
+|init_array\ (num_elements);\l\
+|D.2946\ =\ pthread_self\ ();\l\
+|D.2947\ =\ (long\ int)\ D.2946;\l\
+|stdout.15\ =\ stdout;\l\
+|fprintf\ (stdout.15,\ \"Thread[%lu]:\ Before\ parallel\ region.\n\",\ D.2947);\l\
+|.omp_data_o.27.num_elements\ =\ num_elements;\l\
+|num_threads.32\ =\ (unsigned\ int)\ num_threads;\l\
+|__builtin_GOMP_parallel_start\ (main._omp_fn.0,\ &.omp_data_o.27,\ num_threads.32);\l\
+|main._omp_fn.0\ (&.omp_data_o.27);\l\
+|__builtin_GOMP_parallel_end\ ();\l\
+|num_elements\ =\ .omp_data_o.27.num_elements;\l\
+|D.2972\ =\ pthread_self\ ();\l\
+|D.2973\ =\ (long\ int)\ D.2972;\l\
+|stdout.22\ =\ stdout;\l\
+|fprintf\ (stdout.22,\ \"Thread[%lu]:\ All\ threads\ were\ finished.\n\",\ D.2973);\l\
+|D.2975\ =\ pthread_self\ ();\l\
+|D.2976\ =\ (long\ int)\ D.2975;\l\
+|stdout.23\ =\ stdout;\l\
+|fprintf\ (stdout.23,\ \"Thread[%lu]:\ Printing\ the\ result.\n\",\ D.2976);\l\
+|D.2978\ =\ pthread_self\ ();\l\
+|D.2979\ =\ (long\ int)\ D.2978;\l\
+|stdout.24\ =\ stdout;\l\
+|fprintf\ (stdout.24,\ \"Thread[%lu]:\ Checking\ the\ result.\n\",\ D.2979);\l\
+|check_result\ (num_elements);\l\
+|D.2981\ =\ pthread_self\ ();\l\
+|D.2982\ =\ (long\ int)\ D.2981;\l\
+|stdout.25\ =\ stdout;\l\
+|fprintf\ (stdout.25,\ \"Thread[%lu]:\ Fui,\ Tchau!\n\",\ D.2982);\l\
+|D.2984\ =\ 0;\l\
+}"];
+
+	fn_5_basic_block_5 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 5\>:\l\
+|\<L2\>:\l\
+|return\ D.2984;\l\
+}"];
+
+	fn_5_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+|D.2922\ =\ *argv;\l\
+|stderr.8\ =\ stderr;\l\
+|fprintf\ (stderr.8,\ \"Uso:\ %s\ \<num_elements\>\ \<num_threads\>\ \<partition_size\>\n\",\ D.2922);\l\
+|exit\ (0);\l\
+}"];
+
+	fn_5_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_5_basic_block_0:s -> fn_5_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_5_basic_block_2:s -> fn_5_basic_block_3:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_5_basic_block_2:s -> fn_5_basic_block_4:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_5_basic_block_4:s -> fn_5_basic_block_5:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_5_basic_block_5:s -> fn_5_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_5_basic_block_0:s -> fn_5_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "main._omp_fn.0" {
+	color="black";
+	label="main._omp_fn.0";
+	fn_6_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_6_basic_block_13 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 13\>:\l\
+}"];
+
+	fn_6_basic_block_5 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 5\>:\l\
+|D.3008\ =\ omp_get_thread_num\ ();\l\
+|id\ =\ (long\ int)\ D.3008;\l\
+|partition.16\ =\ partition;\l\
+|D.3011\ =\ .omp_data_i-\>num_elements;\l\
+|D.3012\ =\ (long\ int)\ partition.16;\l\
+|D.3013\ =\ (long\ int)\ D.3011;\l\
+|D.3016\ =\ __builtin_GOMP_loop_dynamic_start\ (0,\ D.3013,\ 1,\ D.3012,\ &.istart0.28,\ &.iend0.29);\l\
+|if\ (D.3016\ !=\ 0)\l\
+\ \ goto\ \<bb\ 11\>;\l\
+else\l\
+\ \ goto\ \<bb\ 7\>;\l\
+}"];
+
+	fn_6_basic_block_11 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 11\>:\l\
+|.istart0.30\ =\ .istart0.28;\l\
+|i\ =\ (int)\ .istart0.30;\l\
+|.iend0.31\ =\ .iend0.29;\l\
+|D.3020\ =\ (int)\ .iend0.31;\l\
+}"];
+
+	fn_6_basic_block_6 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 6\>:\l\
+|D.3021\ =\ pthread_self\ ();\l\
+|D.3022\ =\ (long\ int)\ D.3021;\l\
+|stdout.17\ =\ stdout;\l\
+|fprintf\ (stdout.17,\ \"\ \ \ Thread[%lu,%lu]:\ Working\ on\ partition.\n\",\ id,\ D.3022);\l\
+|h_c.18\ =\ h_c;\l\
+|D.3025\ =\ (long\ unsigned\ int)\ i;\l\
+|D.3026\ =\ D.3025\ *\ 4;\l\
+|D.3027\ =\ h_c.18\ +\ D.3026;\l\
+|h_a.19\ =\ h_a;\l\
+|D.3029\ =\ (long\ unsigned\ int)\ i;\l\
+|D.3030\ =\ D.3029\ *\ 4;\l\
+|D.3031\ =\ h_a.19\ +\ D.3030;\l\
+|D.3032\ =\ *D.3031;\l\
+|h_b.20\ =\ h_b;\l\
+|D.3034\ =\ (long\ unsigned\ int)\ i;\l\
+|D.3035\ =\ D.3034\ *\ 4;\l\
+|D.3036\ =\ h_b.20\ +\ D.3035;\l\
+|D.3037\ =\ *D.3036;\l\
+|D.3038\ =\ D.3032\ +\ D.3037;\l\
+|*D.3027\ =\ D.3038;\l\
+|i\ =\ i\ +\ 1;\l\
+|if\ (i\ \<\ D.3020)\l\
+\ \ goto\ \<bb\ 6\>;\l\
+else\l\
+\ \ goto\ \<bb\ 12\>;\l\
+}"];
+
+	fn_6_basic_block_12 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 12\>:\l\
+|D.3039\ =\ __builtin_GOMP_loop_dynamic_next\ (&.istart0.28,\ &.iend0.29);\l\
+|if\ (D.3039\ !=\ 0)\l\
+\ \ goto\ \<bb\ 11\>;\l\
+else\l\
+\ \ goto\ \<bb\ 7\>;\l\
+}"];
+
+	fn_6_basic_block_7 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 7\>:\l\
+|__builtin_GOMP_loop_end\ ();\l\
+}"];
+
+	fn_6_basic_block_8 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 8\>:\l\
+|D.3040\ =\ pthread_self\ ();\l\
+|D.3041\ =\ (long\ int)\ D.3040;\l\
+|stdout.21\ =\ stdout;\l\
+|fprintf\ (stdout.21,\ \"\ \ Thread[%lu]:\ Exiting.\n\",\ D.3041);\l\
+|return;\l\
+}"];
+
+	fn_6_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_6_basic_block_0:s -> fn_6_basic_block_13:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_6_basic_block_13:s -> fn_6_basic_block_5:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_6_basic_block_5:s -> fn_6_basic_block_11:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_6_basic_block_5:s -> fn_6_basic_block_7:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_6_basic_block_11:s -> fn_6_basic_block_6:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_6_basic_block_6:s -> fn_6_basic_block_6:n [style="dotted,bold",color=blue,weight=10,constraint=false];
+	fn_6_basic_block_6:s -> fn_6_basic_block_12:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_6_basic_block_12:s -> fn_6_basic_block_7:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_6_basic_block_12:s -> fn_6_basic_block_11:n [style="dotted,bold",color=blue,weight=10,constraint=false];
+	fn_6_basic_block_7:s -> fn_6_basic_block_8:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_6_basic_block_8:s -> fn_6_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_6_basic_block_0:s -> fn_6_basic_block_1:n [style="invis",constraint=true];
+}
+}

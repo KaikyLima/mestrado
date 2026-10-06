@@ -1,0 +1,147 @@
+
+;; Function main (main, funcdef_no=2, decl_uid=2778, cgraph_uid=2)
+
+
+OMP region tree
+
+bb 2: gimple_omp_parallel
+    bb 3: gimple_omp_for
+    bb 4: GIMPLE_OMP_CONTINUE
+    bb 5: GIMPLE_OMP_RETURN
+bb 8: GIMPLE_OMP_RETURN
+
+Merging blocks 2 and 15
+Merging blocks 2 and 9
+main ()
+{
+  int D.2819;
+  int D.2817;
+  int D.2818;
+  int tt.2;
+  int q.1;
+  int D.2814;
+  int D.2813;
+  int a;
+  int i;
+  static const char __PRETTY_FUNCTION__[5] = "main";
+  int a;
+  int i;
+  int id;
+  int D.2801;
+  int D.2800;
+  long int D.2799;
+  int D.2798;
+  int D.2789;
+  long int D.2788;
+  int D.2787;
+
+  <bb 2>:
+  a = 0;
+  D.2787 = pthread_self ();
+  D.2788 = (long int) D.2787;
+  D.2789 = omp_get_thread_num ();
+  printf ("Thread[%d][%lu]: Before parallel region a: %d...\n", D.2789, D.2788, a);
+  __builtin_GOMP_parallel_start (main._omp_fn.0, 0B, 4);
+  main._omp_fn.0 (0B);
+  __builtin_GOMP_parallel_end ();
+  D.2798 = pthread_self ();
+  D.2799 = (long int) D.2798;
+  D.2800 = omp_get_thread_num ();
+  printf ("Thread[%d][%lu]: After parallel region a: %d...\n", D.2800, D.2799, a);
+  D.2801 = 0;
+
+<L2>:
+  return D.2801;
+
+}
+
+
+
+;; Function main._omp_fn.0 (main._omp_fn.0, funcdef_no=3, decl_uid=2803, cgraph_uid=6)
+
+main._omp_fn.0 (void * .omp_data_i)
+{
+  long int D.2836;
+  int D.2835;
+  long int D.2834;
+  int D.2833;
+  int a;
+  int i;
+  int D.2830;
+  int D.2829;
+  int D.2828;
+  int tt.2;
+  int q.1;
+  int D.2825;
+  int D.2824;
+  long int D.2823;
+  int D.2822;
+  int a;
+  int id;
+
+  <bb 14>:
+
+  <bb 3>:
+  id = omp_get_thread_num ();
+  a = 1;
+  D.2822 = pthread_self ();
+  D.2823 = (long int) D.2822;
+  printf ("Thread[%d][%lu]: Threading starting with a: %d...\n", id, D.2823, a);
+  D.2824 = __builtin_omp_get_num_threads ();
+  D.2825 = __builtin_omp_get_thread_num ();
+  q.1 = 8 / D.2824;
+  tt.2 = 8 % D.2824;
+  if (D.2825 < tt.2)
+    goto <bb 12>;
+  else
+    goto <bb 13>;
+
+  <bb 13>:
+  D.2828 = q.1 * D.2825;
+  D.2829 = D.2828 + tt.2;
+  D.2830 = D.2829 + q.1;
+  if (D.2829 >= D.2830)
+    goto <bb 5>;
+  else
+    goto <bb 11>;
+
+  <bb 11>:
+  i = D.2829;
+
+  <bb 4>:
+  a = 2;
+  D.2833 = pthread_self ();
+  D.2834 = (long int) D.2833;
+  printf ("Thread[%d][%lu]: Working in %lu loop iteration a: %d...\n", id, D.2834, i, a);
+  i = i + 1;
+  if (i < D.2830)
+    goto <bb 4>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  __builtin_GOMP_barrier ();
+
+  <bb 6>:
+  if (a != 1)
+    goto <bb 7>;
+  else
+    goto <bb 8>;
+
+  <bb 8>:
+  D.2835 = pthread_self ();
+  D.2836 = (long int) D.2835;
+  printf ("Thread[%d][%lu]: After the for loop a: %d...\n", id, D.2836, a);
+  return;
+
+  <bb 7>:
+  __assert_fail ("a == 1", "example-for-private-clause.c", 40, &__PRETTY_FUNCTION__);
+
+  <bb 12>:
+  tt.2 = 0;
+  q.1 = q.1 + 1;
+  goto <bb 13>;
+
+}
+
+

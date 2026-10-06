@@ -1,0 +1,25 @@
+digraph "CFG for 'main.omp_outlined' function" {
+	label="CFG for 'main.omp_outlined' function";
+
+	Node0x5616fe62bc70 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#d6524470", fontname="Courier",label="{entry:\l|  %.global_tid..addr = alloca ptr, align 8\l  %.bound_tid..addr = alloca ptr, align 8\l  %id = alloca i32, align 4\l  %.omp.iv = alloca i32, align 4\l  %tmp = alloca i32, align 4\l  %.omp.lb = alloca i32, align 4\l  %.omp.ub = alloca i32, align 4\l  %.omp.stride = alloca i32, align 4\l  %.omp.is_last = alloca i32, align 4\l  %i = alloca i32, align 4\l  store ptr %.global_tid., ptr %.global_tid..addr, align 8\l  store ptr %.bound_tid., ptr %.bound_tid..addr, align 8\l  %call = call i32 @omp_get_thread_num()\l  store i32 %call, ptr %id, align 4\l  store i32 0, ptr %.omp.lb, align 4\l  store i32 15, ptr %.omp.ub, align 4\l  store i32 1, ptr %.omp.stride, align 4\l  store i32 0, ptr %.omp.is_last, align 4\l  %0 = load ptr, ptr %.global_tid..addr, align 8\l  %1 = load i32, ptr %0, align 4\l  call void @__kmpc_for_static_init_4(ptr @1, i32 %1, i32 34, ptr\l... %.omp.is_last, ptr %.omp.lb, ptr %.omp.ub, ptr %.omp.stride, i32 1, i32 1)\l  %2 = load i32, ptr %.omp.ub, align 4\l  %cmp = icmp sgt i32 %2, 15\l  br i1 %cmp, label %cond.true, label %cond.false\l|{<s0>T|<s1>F}}"];
+	Node0x5616fe62bc70:s0 -> Node0x5616fe62be90;
+	Node0x5616fe62bc70:s1 -> Node0x5616fe62dfe0;
+	Node0x5616fe62be90 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#dc5d4a70", fontname="Courier",label="{cond.true:\l|  br label %cond.end\l}"];
+	Node0x5616fe62be90 -> Node0x5616fe62df80;
+	Node0x5616fe62dfe0 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#dc5d4a70", fontname="Courier",label="{cond.false:\l|  %3 = load i32, ptr %.omp.ub, align 4\l  br label %cond.end\l}"];
+	Node0x5616fe62dfe0 -> Node0x5616fe62df80;
+	Node0x5616fe62df80 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#d6524470", fontname="Courier",label="{cond.end:\l|  %cond = phi i32 [ 15, %cond.true ], [ %3, %cond.false ]\l  store i32 %cond, ptr %.omp.ub, align 4\l  %4 = load i32, ptr %.omp.lb, align 4\l  store i32 %4, ptr %.omp.iv, align 4\l  br label %omp.inner.for.cond\l}"];
+	Node0x5616fe62df80 -> Node0x5616fe62e550;
+	Node0x5616fe62e550 [shape=record,color="#b70d28ff", style=filled, fillcolor="#b70d2870", fontname="Courier",label="{omp.inner.for.cond:\l|  %5 = load i32, ptr %.omp.iv, align 4\l  %6 = load i32, ptr %.omp.ub, align 4\l  %cmp1 = icmp sle i32 %5, %6\l  br i1 %cmp1, label %omp.inner.for.body, label %omp.inner.for.end\l|{<s0>T|<s1>F}}"];
+	Node0x5616fe62e550:s0 -> Node0x5616fe62e5e0;
+	Node0x5616fe62e550:s1 -> Node0x5616fe62e8b0;
+	Node0x5616fe62e5e0 [shape=record,color="#b70d28ff", style=filled, fillcolor="#b70d2870", fontname="Courier",label="{omp.inner.for.body:\l|  %7 = load i32, ptr %.omp.iv, align 4\l  %mul = mul nsw i32 %7, 1\l  %add = add nsw i32 0, %mul\l  store i32 %add, ptr %i, align 4\l  %8 = load i32, ptr %id, align 4\l  %call2 = call i64 @pthread_self() #6\l  %9 = load i32, ptr %i, align 4\l  %call3 = call i32 (ptr, ...) @printf(ptr noundef @.str.1, i32 noundef %8,\l... i64 noundef %call2, i32 noundef %9)\l  br label %omp.body.continue\l}"];
+	Node0x5616fe62e5e0 -> Node0x5616fe62e830;
+	Node0x5616fe62e830 [shape=record,color="#b70d28ff", style=filled, fillcolor="#b70d2870", fontname="Courier",label="{omp.body.continue:\l|  br label %omp.inner.for.inc\l}"];
+	Node0x5616fe62e830 -> Node0x5616fe62f280;
+	Node0x5616fe62f280 [shape=record,color="#b70d28ff", style=filled, fillcolor="#b70d2870", fontname="Courier",label="{omp.inner.for.inc:\l|  %10 = load i32, ptr %.omp.iv, align 4\l  %add4 = add nsw i32 %10, 1\l  store i32 %add4, ptr %.omp.iv, align 4\l  br label %omp.inner.for.cond\l}"];
+	Node0x5616fe62f280 -> Node0x5616fe62e550;
+	Node0x5616fe62e8b0 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#d6524470", fontname="Courier",label="{omp.inner.for.end:\l|  br label %omp.loop.exit\l}"];
+	Node0x5616fe62e8b0 -> Node0x5616fe62e940;
+	Node0x5616fe62e940 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#d6524470", fontname="Courier",label="{omp.loop.exit:\l|  call void @__kmpc_for_static_fini(ptr @1, i32 %1)\l  call void @__kmpc_barrier(ptr @2, i32 %1)\l  ret void\l}"];
+}

@@ -1,0 +1,29 @@
+
+;; Function main (main, funcdef_no=6, decl_uid=4866, cgraph_uid=7, symbol_order=6)
+
+int main ()
+{
+  long unsigned int i;
+  int A[16];
+  int D.4882;
+
+  <bb 2> :
+  _1 = pthread_self ();
+  _2 = (long int) _1;
+  _3 = omp_get_thread_num ();
+  printf ("Thread[%d][%lu]: Before parallel for...\n", _3, _2);
+  GIMPLE_NOP
+  _4 = pthread_self ();
+  _5 = (long int) _4;
+  _6 = omp_get_thread_num ();
+  printf ("Thread[%d][%lu]: After parallel for...\n", _6, _5);
+  D.4882 = 0;
+  A = {CLOBBER(eos)};
+
+  <bb 3> :
+<L1>:
+  return D.4882;
+
+}
+
+

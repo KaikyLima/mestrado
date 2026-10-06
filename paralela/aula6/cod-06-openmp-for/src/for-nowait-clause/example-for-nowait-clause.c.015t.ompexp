@@ -1,0 +1,174 @@
+
+;; Function main (main, funcdef_no=2, decl_uid=2778, cgraph_uid=2)
+
+
+OMP region tree
+
+bb 2: gimple_omp_parallel
+    bb 6: gimple_omp_for
+    bb 7: GIMPLE_OMP_CONTINUE
+    bb 8: GIMPLE_OMP_RETURN
+    bb 3: gimple_omp_for
+    bb 4: GIMPLE_OMP_CONTINUE
+    bb 5: GIMPLE_OMP_RETURN
+bb 9: GIMPLE_OMP_RETURN
+
+Merging blocks 2 and 17
+Merging blocks 2 and 10
+main ()
+{
+  _Bool D.2820;
+  long int .iend0.8;
+  int D.2819;
+  long int .istart0.7;
+  _Bool D.2816;
+  long int .iend0.6;
+  long int .istart0.5;
+  _Bool D.2813;
+  long int .iend0.4;
+  int D.2812;
+  long int .istart0.3;
+  _Bool D.2809;
+  long int .iend0.2;
+  long int .istart0.1;
+  int j;
+  int i;
+  int j;
+  int i;
+  int id;
+  int D.2798;
+  int D.2797;
+  long int D.2796;
+  int D.2795;
+  int D.2788;
+  long int D.2787;
+  int D.2786;
+
+  <bb 2>:
+  j = 0;
+  D.2786 = pthread_self ();
+  D.2787 = (long int) D.2786;
+  D.2788 = omp_get_thread_num ();
+  printf ("Thread[%d][%lu]: Before parallel region...\n", D.2788, D.2787);
+  __builtin_GOMP_parallel_start (main._omp_fn.0, 0B, 4);
+  main._omp_fn.0 (0B);
+  __builtin_GOMP_parallel_end ();
+  D.2795 = pthread_self ();
+  D.2796 = (long int) D.2795;
+  D.2797 = omp_get_thread_num ();
+  printf ("Thread[%d][%lu]: After parallel region...\n", D.2797, D.2796);
+  D.2798 = 0;
+
+<L0>:
+  return D.2798;
+
+}
+
+
+
+;; Function main._omp_fn.0 (main._omp_fn.0, funcdef_no=3, decl_uid=2800, cgraph_uid=6)
+
+main._omp_fn.0 (void * .omp_data_i)
+{
+  _Bool D.2843;
+  long int D.2842;
+  int D.2841;
+  int D.2840;
+  long int .iend0.4;
+  int j;
+  long int .istart0.3;
+  _Bool D.2836;
+  long int .iend0.2;
+  long int .istart0.1;
+  _Bool D.2833;
+  long int D.2832;
+  int D.2831;
+  int D.2830;
+  long int .iend0.8;
+  int i;
+  long int .istart0.7;
+  _Bool D.2826;
+  long int .iend0.6;
+  long int .istart0.5;
+  long int D.2823;
+  int D.2822;
+  int id;
+
+  <bb 16>:
+
+  <bb 3>:
+  id = omp_get_thread_num ();
+  D.2822 = pthread_self ();
+  D.2823 = (long int) D.2822;
+  printf ("Thread[%d][%lu]: Threading starting with...\n", id, D.2823);
+  D.2826 = __builtin_GOMP_loop_runtime_start (0, 16, 1, &.istart0.5, &.iend0.6);
+  if (D.2826 != 0)
+    goto <bb 14>;
+  else
+    goto <bb 5>;
+
+  <bb 14>:
+  .istart0.7 = .istart0.5;
+  i = (int) .istart0.7;
+  .iend0.8 = .iend0.6;
+  D.2830 = (int) .iend0.8;
+
+  <bb 4>:
+  D.2831 = pthread_self ();
+  D.2832 = (long int) D.2831;
+  printf ("LOOP 1: Thread[%d][%lu]: Working in %lu loop iteration...\n", id, D.2832, i);
+  i = i + 1;
+  if (i < D.2830)
+    goto <bb 4>;
+  else
+    goto <bb 15>;
+
+  <bb 15>:
+  D.2833 = __builtin_GOMP_loop_runtime_next (&.istart0.5, &.iend0.6);
+  if (D.2833 != 0)
+    goto <bb 14>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  __builtin_GOMP_loop_end ();
+
+  <bb 6>:
+  D.2836 = __builtin_GOMP_loop_dynamic_start (0, 16, 1, 2, &.istart0.1, &.iend0.2);
+  if (D.2836 != 0)
+    goto <bb 12>;
+  else
+    goto <bb 8>;
+
+  <bb 12>:
+  .istart0.3 = .istart0.1;
+  j = (int) .istart0.3;
+  .iend0.4 = .iend0.2;
+  D.2840 = (int) .iend0.4;
+
+  <bb 7>:
+  D.2841 = pthread_self ();
+  D.2842 = (long int) D.2841;
+  printf ("LOOP 2: Thread[%d][%lu]: Working in %lu loop iteration...\n", id, D.2842, j);
+  j = j + 1;
+  if (j < D.2840)
+    goto <bb 7>;
+  else
+    goto <bb 13>;
+
+  <bb 13>:
+  D.2843 = __builtin_GOMP_loop_dynamic_next (&.istart0.1, &.iend0.2);
+  if (D.2843 != 0)
+    goto <bb 12>;
+  else
+    goto <bb 8>;
+
+  <bb 8>:
+  __builtin_GOMP_loop_end_nowait ();
+
+  <bb 9>:
+  return;
+
+}
+
+
