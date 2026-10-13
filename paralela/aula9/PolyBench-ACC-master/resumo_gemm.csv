@@ -1,0 +1,12 @@
+versao,threads,repeticoes,mediana_segundos
+sequencial,1,5,3.442397
+openmp,1,5,3.784611
+openmp,2,5,1.426859
+openmp,4,5,0.728853
+openmp,8,5,0.472150
+openmp,12,5,0.474204
+taskloop,1,5,3.496949
+taskloop,2,5,1.463839
+taskloop,4,5,0.743994
+taskloop,8,5,0.516341
+taskloop,12,5,0.403468
