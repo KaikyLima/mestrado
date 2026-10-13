@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <omp.h>
+#include <pthread.h>
 int main(int argc, char *argv[]) {
   int i, id;
   int sum = 0;

@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <omp.h>
+#include <pthread.h>
 // Size of vectors.
 #ifndef N
 #define N 10
 #endif
-// Entrada e saída.
+// Entrada e saï¿½da.
 float h_a[N];
 float h_b[N];
 float h_c[N];
@@ -49,7 +50,7 @@ void addvector(float *a, float *b, float *c){
   #pragma omp parallel
   {
     #pragma omp for
-    /* Cálculo. */
+    /* Cï¿½lculo. */
     for (i = 0; i < N; i++) {
       fprintf(stdout, "       Thread[%lu,%lu]: (addvector) Executing loop iteration %d.\n", omp_get_thread_num(), (long int) pthread_self(), i);
       c[i] = a[i] + b[i];
@@ -67,10 +68,10 @@ void subvector(float *a, float *b, float *c){
 
 int main(int argc, char *argv[]) {
   int i, id;
-  /* Inicialização  dos vetores. */
+  /* Inicializaï¿½ï¿½o  dos vetores. */
   init_array();
 
-  /* Para permitir a criação de threads em regiões aninhadas. */
+  /* Para permitir a criaï¿½ï¿½o de threads em regiï¿½es aninhadas. */
   omp_set_nested(1);
 
   fprintf(stdout, "Thread[%lu]: Before parallel region.\n", (long int) pthread_self());
