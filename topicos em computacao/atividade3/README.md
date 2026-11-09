@@ -1,0 +1,121 @@
+# Projeto Aperture
+
+Este projeto tem como objetivo fornecer um material interativo e visual para colaborar com o ensino de circuitos digitais e arquitetura de computadores, focando inicialmente na arquitetura MIPS e com planos para expansão à arquitetura RISC-V. O projeto é desenvolvido para uso no simulador de circuitos digitais Logisim-evolution (versão 3.8.0).
+
+## Execução
+- **Requisitos:** Utilize a versão 3.8.0 do Logisim-evolution: [logisim-evolution no GitHub](https://github.com/logisim-evolution/logisim-evolution)
+- **Landing page do projeto:** [Projeto Aperture](https://christoferlv.github.io/ProjetoAperture/)
+- **Vídeo explicativo de como carregar códigos:** (https://youtu.be/M2T5MPhDHDg)
+- **Configuração de diretórios:**
+  - Para abrir as arquiteturas implementadas, a pasta `components` deve estar no mesmo diretório do arquivo `.circ` correspondente.
+  - **Nota para sistemas Linux:** Pode ser necessário editar o XML dos arquivos `.circ`, substituindo `\\` por `/` no caminho dos componentes.
+    - Exemplo:
+```xml
+<lib desc="file#components\regFile.circ" name="12"/>
+```
+deve ser trocado por:
+```xml
+<lib desc="file#components/regFile.circ" name="12"/>
+```
+
+## Conteúdo Disponível
+
+### Circuitos Digitais
+- Construção de portas lógicas usando transistores.
+- Construção de portas lógicas mostrando a equivalências com NAND e NOR.
+  ![Quadro_NAND](https://github.com/user-attachments/assets/3bf4b462-dc0d-4957-8552-fe60c1e94e72)
+- Construção de encoders e decoders.
+  - Decodificardor 2 entradas 4 saídas.
+  - Decodificador BCD.
+  - Decodificador para diplay de 7 segmentos.
+  - Codificador 4 entradas 2 saídas.
+  - Codificador BCD.
+- Construção de multiplexadores e demultiplexadores.
+  - Mux de duas, quatro e oito entradas de 1 bit.
+  - Mux de duas e quatro entradas de 2 bits (forma soma de produtos e produto das somas)
+  - Demux de duas, quatro e oito saídas de 1 bit.
+  - Demux de duas e quatro saídas de 2 bits.
+- Construção de latches e flip-flops.
+- Operações aritméticas:
+  - Adição
+    - Somador 4, 8 e 32 bits.
+    - Somador lookahead 4 e 8 bits.
+    <img align="left" src="https://github.com/user-attachments/assets/a6c9a786-1fe7-4cdf-9c95-a6539879697a">
+  - Subtração.
+    - somador_subtrator 4 e 8 bits.
+    - somador_subtrator lookahead 4 e 8 bits.
+  - Multiplicação.
+    - Multiplicador 8 bits sequencial.
+    - Multiplicador array de 4 e 8 bits.
+    - Multiplicador array de 8 bits sem subcircuito.
+  - Divisão.
+    - Divisor array de 4 e 8 bits.
+- Construção de registradores com combinações de entrada e saída:
+  - Paralela-paralela.
+  - Paralela-serial.
+  - Serial-paralela.
+  - Serial-serial.
+- Memórias
+  - RAM 1x4, 4x1, 4x4, 8x1, 8x8
+  ![RAM_8x8](https://github.com/user-attachments/assets/0a673661-bac2-4fb5-b653-45f2583db25a)
+
+
+### Arquitetura de Computadores
+- Fornecemos a construção de caminhos de dados MIPS parciais para:
+  - add
+  - addi
+  - beq
+  - j
+  - lw
+  - sw
+- Comparação entre os caminhos de dados listados e também um caminho de dados manual para o usuário poder explorar o papel dos sinais de controle, visualizando qual seria o trabalho de uma unidade de controle.
+![compared_datapaths](https://github.com/user-attachments/assets/f2f06469-bb05-4364-8a4a-a33d72bfe22c)
+
+### Implementações Completas do MIPS
+
+#### Instruções Suportadas
+| Instrução          | Formato                 | Instrução          | Formato                 |
+|--------------------|-------------------------|--------------------|-------------------------|
+| `add`             | `rd = rs + rt`          | `andi`            | `rt = rs & immediate`   |
+| `and`             | `rd = rs & rt`          | `ori`             | `rt = rs \| immediate`   |
+| `sll`             | `rd = rt << sa`         | `lw`              | `rt = Mem[rs + offset]` |
+| `srl`             | `rd = rt >> sa`         | `sw`              | `Mem[rs + offset] = rt` |
+| `sub`             | `rd = rs - rt`          | `beq`             | `if (rs == rt) PC = target`|
+| `or`              | `rd = rs \| rt`          | `bne`             | `if (rs != rt) PC = target`|
+| `xor`             | `rd = rs ^ rt`          | `slti`            | `rt = (rs < immediate)` |
+| `nor`             | `rd = ~(rs \| rt)`       | `j`               | `PC = target`           |
+| `slt`             | `rd = (rs < rt)`        | `jal`             | `ra = PC; PC = target`  |
+| `jr`              | `PC = rs`              |   `addi`            | `rt = rs + immediate`  |
+
+#### Implementações MIPS Disponíveis
+- **Monociclo:** Executa as instruções em um ciclo de clock. (Segue o diagrama 4.24 do Patterson)
+  ![monociclo](https://github.com/user-attachments/assets/e8fdf56a-316f-4571-af8a-94c6205688aa)
+
+- **Pipeline_clean:** Pipeline de cinco estágios sem tratamento de hazards. (Segue o diagrama 4.41 do Patterson)
+- **Pipeline_BD:** (Segue o diagrama 4.51 do Patterson)
+  - Trata hazards de controle com bolhas.
+- **Pipeline_BD_BB:** 
+  - Trata todos os hazards com bolhas.
+- **Pipeline_BD_FW:** (Segue o diagrama 4.60 do Patterson)
+  - Trata hazards de dados com forwarding.
+- **Pipeline_AB_BD:**
+  - Adianta o controle de desvio para o estágio 2 para maior eficiência.
+- **Pipeline_AB_BB:**
+  - Trata hazards de dados com bolhas.
+- **Pipeline_AB_BD_FW:** (Segue o diagrama 4.65 do Patterson)
+  - Trata hazards de dados com forwarding.
+- **Pipeline_AB_BD_FW_JTB:**
+  - Adição de uma JTB.
+
+### Códigos para testes
+São disponibilizados alguns códigos de teste focados em unidades funcionais para o usuário testar seus funcionamentos.
+
+## Referências
+Mais informações sobre o conjunto de instruções MIPS nos seguintes links:
+- [Computer Organization and Design: The Hardware/Software Interface](https://www.academia.edu/44362001/Organiza%C3%A7%C3%A3o_e_Projeto_de_Computadores_Interface_Hardware_Software_5a_EDI%C3%87%C3%83O)
+- [MIPS_Green_Sheet](https://checkoway.net/teaching/cs210/2024-fall/MIPS_Green_Sheet.pdf)
+- [MIPS Instruction Formats - Wikibooks](https://en.wikibooks.org/wiki/MIPS_Assembly/Instruction_Formats)
+- [MIPS Reference Sheet](https://web.archive.org/web/20241219083434/https://uweb.engr.arizona.edu/~ece369/Resources/spim/MIPSReference.pdf)
+- [MIPS Opcodes - OpenCores](https://opencores.org/projects/plasma/opcodes)
+
+
