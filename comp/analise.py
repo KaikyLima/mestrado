@@ -22,6 +22,24 @@ def num(s):
     return float(str(s).strip().replace(",", "."))
 
 
+def fmt(v, f):
+    return "-" if v is None else format(v, f)
+
+
+def le_linhas(f):
+    """Lê o energia.csv tolerando BOM, separador ',' ';' ou tab e espaços no cabeçalho."""
+    linhas = f.read().splitlines()
+    if not linhas:
+        sys.exit("energia.csv está vazio.")
+    delim = max(",;\t", key=linhas[0].count)
+    leitor = csv.DictReader(linhas, delimiter=delim, skipinitialspace=True)
+    leitor.fieldnames = [c.strip().strip('"') for c in leitor.fieldnames]
+    if "energia_pkg_J" not in leitor.fieldnames:
+        sys.exit(f"Cabeçalho inesperado em energia.csv: {linhas[0]!r}")
+    for r in leitor:
+        yield {k: (v or "").strip() for k, v in r.items() if k is not None}
+
+
 def achar_pasta(arg):
     if arg:
         return arg
@@ -52,8 +70,8 @@ def main():
     print(f"Potência de idle: {p_idle:.2f} W\n")
 
     grupos = OrderedDict()
-    with open(os.path.join(pasta, "energia.csv"), newline="") as f:
-        for r in csv.DictReader(f):
+    with open(os.path.join(pasta, "energia.csv"), newline="", encoding="utf-8-sig") as f:
+        for r in le_linhas(f):
             if not r["energia_pkg_J"] or not r["tempo_elapsed_s"]:
                 continue
             g = grupos.setdefault(r["config"], {"threads": int(r["threads"]), "linhas": []})
@@ -82,6 +100,35 @@ def main():
               f"{r['Eliq'][0]:>9.2f} ±{r['Eliq'][1]:>5.2f}  "
               f"{r['P'][0]:>7.2f} ±{r['P'][1]:>4.2f}  "
               f"{r['t'][0]:>9.4f} ±{r['t'][1]:>6.4f}")
+
+    # Eficiência paralela e energética
+    # FLOPS (opcional): nº de operações de ponto flutuante do kernel, ex.: FLOPS=2.64e9
+    base = next((r for r in resumo if r["config"] == "p_1"), None)
+    flops = float(os.environ["FLOPS"]) if os.environ.get("FLOPS") else None
+    print("\nEficiência (calculada com as médias)")
+    cab2 = f"{'config':<8}{'speedup':>9}{'Ef par.%':>10}{'EDP (J*s)':>12}{'E rel.':>8}"
+    if flops:
+        cab2 += f"{'GFLOPS':>9}{'GFLOP/J':>10}"
+    print(cab2)
+    print("-" * len(cab2))
+    for r in resumo:
+        nome = r["config"]
+        if re.fullmatch(r"p_\d+", nome):
+            nucleos = r["threads"]      # 1 thread por núcleo físico
+        elif nome == "p_ht":
+            nucleos = 6                 # 6 núcleos físicos, 12 threads
+        else:
+            nucleos = None              # configs com E-cores: speedup sem eficiência paralela
+        S = base["t"][0] / r["t"][0] if base else None
+        ef = 100 * S / nucleos if (S and nucleos) else None
+        edp = r["E"][0] * r["t"][0]
+        erel = base["E"][0] / r["E"][0] if base else None
+        linha = f"{nome:<8}{fmt(S, '.2f'):>9}{fmt(ef, '.1f'):>10}{edp:>12.1f}{fmt(erel, '.2f'):>8}"
+        if flops:
+            linha += f"{flops / 1e9 / r['t'][0]:>9.3f}{flops / 1e9 / r['E'][0]:>10.4f}"
+        print(linha)
+    print("speedup = T(p_1)/T(cfg) | Ef par. = speedup / nº de núcleos físicos | "
+          "EDP = E x T | E rel. = E(p_1)/E(cfg)")
 
     # Custo marginal por núcleo adicionado (p_1 .. p_6)
     seq = sorted((r for r in resumo if re.fullmatch(r"p_\d+", r["config"])),
